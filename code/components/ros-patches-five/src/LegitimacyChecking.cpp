@@ -117,65 +117,12 @@ __declspec(noinline) static bool HasEntitlementSource()
 
 bool LoadOwnershipTicket()
 {
-    std::string filePath = GetOwnershipPath();
-
-    FILE* f = _wfopen(ToWide(filePath).c_str(), L"rb");
-
-    if (!f)
+	if (!HasEntitlementSource())
     {
-        return false;
+        SetEntitlementSource("00000000-0000-0000-0000-000000000000");
     }
 
-    std::vector<uint8_t> fileData;
-    int pos;
-
-    // get the file length
-    fseek(f, 0, SEEK_END);
-    pos = ftell(f);
-    fseek(f, 0, SEEK_SET);
-
-    // resize the buffer
-    fileData.resize(pos);
-
-    // read the file and close it
-    fread(&fileData[0], 1, pos, f);
-
-    fclose(f);
-
-    // decrypt the stored data - setup blob
-    DATA_BLOB cryptBlob;
-    cryptBlob.pbData = &fileData[0];
-    cryptBlob.cbData = fileData.size();
-
-    DATA_BLOB outBlob;
-
-    // call DPAPI
-    if (CryptUnprotectData(&cryptBlob, nullptr, nullptr, nullptr, nullptr, 0, &outBlob))
-    {
-        // parse the file
-        std::string data(reinterpret_cast<char*>(outBlob.pbData), outBlob.cbData);
-        
-        // free the out data
-        LocalFree(outBlob.pbData);
-
-		rapidjson::Document doc;
-		doc.Parse(data.c_str(), data.size());
-
-		if (!doc.HasParseError())
-		{
-			if (doc.IsObject())
-			{
-				SetEntitlementSource(doc["guid"].GetString());
-
-				if (HasEntitlementSource())
-				{
-					return true;
-				}
-			}
-		}
-    }
-
-    return false;
+	return true;
 }
 
 bool SaveOwnershipTicket(const std::string& guid)

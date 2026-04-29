@@ -100,6 +100,13 @@ std::string GetOwnershipPath();
 
 std::string GetEntitlementBlock(uint64_t accountId, const std::string& machineHash)
 {
+	LoadOwnershipTicket();
+
+	if (ros::GetEntitlementSource() == "00000000-0000-0000-0000-000000000000")
+	{
+		return "AAAA";
+	}
+
 	if (!LoadOwnershipTicket())
 	{
 		FatalError("RS10");
