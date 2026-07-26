@@ -25,6 +25,14 @@ export const LegacyConnectingModal = observer(function LegacyConnectingModal() {
     return null;
   }
 
+  // HIDE MODAL ENTIRELY for connecting and status states so it can be handled by HomePage inline!
+  if (service.resolvingServer) {
+    return null;
+  }
+  if (service.state && (service.state.type === 'connecting' || service.state.type === 'status')) {
+    return null;
+  }
+
   let node: React.ReactNode;
 
   if (service.resolvingServer) {
@@ -33,19 +41,6 @@ export const LegacyConnectingModal = observer(function LegacyConnectingModal() {
     );
   } else if (service.state) {
     switch (service.state.type) {
-      case 'connecting': {
-        node = (
-          <ResolvingServer />
-        );
-        break;
-      }
-
-      case 'status': {
-        node = (
-          <ConnectStatus state={service.state} onCancel={service.cancel} />
-        );
-        break;
-      }
 
       case 'failed': {
         node = (
@@ -83,7 +78,18 @@ export const LegacyConnectingModal = observer(function LegacyConnectingModal() {
         ? service.cancel
         : undefined}
     >
-      <Box width="calc(var(--width) / 2)">
+      <Box 
+        width="calc(var(--width) / 2.5)"
+        style={{
+          background: 'rgba(20, 20, 20, 0.65)',
+          backdropFilter: 'blur(15px)',
+          WebkitBackdropFilter: 'blur(15px)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          borderRadius: '20px 0 20px 20px',
+          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+          overflow: 'hidden'
+        }}
+      >
         {!!service.server && service.showServer && (
           <ServerHeader server={service.server} />
         )}

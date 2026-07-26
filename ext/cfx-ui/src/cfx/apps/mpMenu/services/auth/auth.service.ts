@@ -65,15 +65,8 @@ export class AuthService {
     makeAutoObservable(this);
 
     accountService.initialAuthCompletePromise().then((authenticated) => {
-      if (authenticated) {
-        return;
-      }
-
-      if (this._uiNudgeState === AuthUINudgeState.IGNORE) {
-        return;
-      }
-
-      this.UIOpen = true;
+      // Intentionally bypassed so the auth modal never opens on startup
+      return;
     });
   }
 

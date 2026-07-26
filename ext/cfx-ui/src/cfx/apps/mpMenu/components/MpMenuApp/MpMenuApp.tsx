@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { AuthModal } from 'cfx/apps/mpMenu/parts/AuthModal/AuthModal';
 import { LegacyConnectingModal } from 'cfx/apps/mpMenu/parts/LegacyConnectingModal/LegacyConnectingModal';
@@ -17,6 +17,11 @@ import { AcitivityItemMediaViewerProvider } from '../AcitivityItemMediaViewer/Ac
 import s from './MpMenuApp.module.scss';
 
 function MpMenuUI() {
+  const location = useLocation();
+
+  // Hide NavBar on homepage - it has its own integrated controls
+  const isHomePage = location.pathname === '/' || location.pathname === '';
+
   return (
     <>
       <NavigationTracker />
@@ -30,7 +35,9 @@ function MpMenuUI() {
       <ServerBoostModal />
 
       <div className={s.root}>
-        <NavBar />
+        {!isHomePage && (
+          <NavBar />
+        )}
 
         <div className={s.outlet}>
           <Outlet />

@@ -34,7 +34,18 @@ export const ServerHeader = observer(function ServerHeader(props: ServerHeaderPr
               <ServerIcon type="details" size="small" server={server} />
 
               <Flex vertical>
-                <ServerTitle size="xxlarge" title={server.projectName || server.hostname} />
+                <div style={{
+                  fontSize: '3rem',
+                  fontWeight: 900,
+                  background: 'linear-gradient(45deg, #00a8ff, #005f99)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.5))',
+                  textAlign: 'center',
+                  fontFamily: 'Montserrat, sans-serif'
+                }}>
+                  GTA5F8
+                </div>
               </Flex>
             </Flex>
           </Flex>

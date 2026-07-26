@@ -2,7 +2,7 @@
 <FileBuild>
   <File Name="asi-five.dll" Hash="49588f9f458ca5022581f2d219642796ffcf0f17" Size="195584"/>
   <File Name="botan.dll" Hash="dd22d8abf4860b53e5069eaedbc534cecc6c9024" Size="4488704"/>
-  <File Name="cef_console.txt" Hash="c633b6e428b87770ff617fb9a741650d4df2f943" Size="981"/>
+  <File Name="cef_console.txt" Hash="5257940b80478eb5c6b5b2e0c40b05438d66432b" Size="712"/>
   <File Name="cfx_curl_x86_64.dll" Hash="127635f621def1588a2018756cf7e5524a11f3c1" Size="2462208"/>
   <File Name="CitiLaunch_TLSDummy.dll" Hash="de297b8e7763daa83705bf4ae7dbfa1110aa9867" Size="133632"/>
   <File Name="CitiTest.exe" Hash="32e826ce0a7e21087ce32fd2e3b51d9faad3dad5" Size="986624"/>
@@ -180,7 +180,7 @@
   <File Name="citizen/load_profile.json" Hash="67903eda1fce12cbf41390bd64cfce94a294354b" Size="35066"/>
   <File Name="citizen/streaming_surrogate.rpf" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
   <File Name="citizen/ui-big.zip" Hash="66070c0f63bbc5f354b7bea4a51af46ddf7d4875" Size="3271626"/>
-  <File Name="citizen/ui.zip" Hash="02abaac0a96dab145d1df8b50d2f61e5640cdf13" Size="12880683"/>
+  <File Name="citizen/ui.zip" Hash="5b3110984f4a125fa3c56334d50aab6ec77b30f7" Size="12880609"/>
   <File Name="citizen/clr2/cfg/mono/4.5/machine.config" Hash="e9c5e91ed07f271c8b26cccdf32cac3bb86cac22" Size="34420"/>
   <File Name="citizen/clr2/lib/mono/4.5/CitizenFX.Core.Client.dll" Hash="69028c6d541935b14ea149a80e5b0ab986a963c7" Size="11264"/>
   <File Name="citizen/clr2/lib/mono/4.5/CitizenFX.Core.dll" Hash="48ea7f38d1b5bca15e28b38245d1007bb46e28ad" Size="3641344"/>
@@ -447,25 +447,25 @@
   <File Name="citizen/VisualElements/VisualElements_70.png" Hash="aa221cfd7ae49f84479648583eb12404030c1ce6" Size="5162"/>
   <File Name="data/nui-storage/000003.log" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
   <File Name="data/nui-storage/CURRENT" Hash="44e0fa1b517dbf802b18faf0785eeea6ac51594b" Size="16"/>
-  <File Name="data/nui-storage/DevToolsActivePort" Hash="b4f6e0fd622a0b3f996968b6fd5aeb0435005350" Size="60"/>
+  <File Name="data/nui-storage/DevToolsActivePort" Hash="05795dc584e95ffc26c6811a47747a85c999baa3" Size="60"/>
   <File Name="data/nui-storage/LocalPrefs.json" Hash="7dce5de0b81b039be7d55d82bbed957efbb99218" Size="638"/>
   <File Name="data/nui-storage/LOCK" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/nui-storage/LOG" Hash="5d14533971cd1195d8403a37449e6b59ad808978" Size="328"/>
-  <File Name="data/nui-storage/LOG.old" Hash="73c32b5158d0bf55e1e637f21d8c31e0e351c640" Size="328"/>
+  <File Name="data/nui-storage/LOG" Hash="a0f4ae53aa90b127221368bac9d71c70f1d9cfca" Size="328"/>
+  <File Name="data/nui-storage/LOG.old" Hash="5d14533971cd1195d8403a37449e6b59ad808978" Size="328"/>
   <File Name="data/nui-storage/MANIFEST-000001" Hash="d5b5bbf396dc291274584ef71f444f420b6056f1" Size="41"/>
   <File Name="data/nui-storage/Visited Links" Hash="a723b605c6857dffc54cc82ce5914d8dc18f2b93" Size="131072"/>
-  <File Name="data/nui-storage/Cache/Cache_Data/data_0" Hash="a6437aa6ee3207aa4109445d9c32fe98c5f510ce" Size="45056"/>
-  <File Name="data/nui-storage/Cache/Cache_Data/data_1" Hash="8b8eddc6de882a45b8b332e310dc2c2314df17a1" Size="270336"/>
+  <File Name="data/nui-storage/Cache/Cache_Data/data_0" Hash="581d7eae9dfd1773d250211e4db13c41e8a41a54" Size="45056"/>
+  <File Name="data/nui-storage/Cache/Cache_Data/data_1" Hash="af59b02c8218002a1d7f378838742fe7b222ce76" Size="270336"/>
   <File Name="data/nui-storage/Cache/Cache_Data/data_2" Hash="59d10a893ef321a706a9255176761366115bedcb" Size="8192"/>
-  <File Name="data/nui-storage/Cache/Cache_Data/data_3" Hash="c3012d9b899f8e8ab678a960849f6da63401c796" Size="4202496"/>
+  <File Name="data/nui-storage/Cache/Cache_Data/data_3" Hash="d2722a6be8227e30ad48fd8ac869ca2c7d7b5ad5" Size="4202496"/>
   <File Name="data/nui-storage/Cache/Cache_Data/f_000002" Hash="3d773c92868db9f70fc049e9fadb51f52ad18988" Size="35883"/>
   <File Name="data/nui-storage/Cache/Cache_Data/f_000003" Hash="099cf5a05570954a1ffdefb0f2030ac592fc8091" Size="255132"/>
   <File Name="data/nui-storage/Cache/Cache_Data/f_000012" Hash="6fd64415ebc6b63d9ed261d88384fd7205980a6f" Size="118862"/>
-  <File Name="data/nui-storage/Cache/Cache_Data/f_000014" Hash="69882528d4246840021a894e1344707c3434acd7" Size="149297"/>
-  <File Name="data/nui-storage/Cache/Cache_Data/index" Hash="9f53fc4219d87095101b5eedf1e05b824bed94bd" Size="262512"/>
+  <File Name="data/nui-storage/Cache/Cache_Data/f_000015" Hash="69882528d4246840021a894e1344707c3434acd7" Size="149297"/>
+  <File Name="data/nui-storage/Cache/Cache_Data/index" Hash="a94a8f9ac1839ed7689ab1a091d281f9801d1a4a" Size="262512"/>
   <File Name="data/nui-storage/Code Cache/js/0b06c431f6ca68f3_0" Hash="35da3e90e1e08455eadfc9fabfb226adf88a80c5" Size="598888"/>
   <File Name="data/nui-storage/Code Cache/js/124ff1385f5d09ee_0" Hash="f1c18cfdec9c17a7739072188411832d944ed513" Size="384968"/>
-  <File Name="data/nui-storage/Code Cache/js/1a437108d4c9823e_0" Hash="39dd5bd0e1f09bd1025cf9c33cb606edb5d479c8" Size="188"/>
+  <File Name="data/nui-storage/Code Cache/js/1a437108d4c9823e_0" Hash="748563ab10a217ce93a2ef4a1d64df590111d8ff" Size="188"/>
   <File Name="data/nui-storage/Code Cache/js/21ea05230e5449c4_0" Hash="f10d8c4b923c9bfac768c8035163e5ce3ce901f0" Size="384984"/>
   <File Name="data/nui-storage/Code Cache/js/30cb2aefa8531eaf_0" Hash="4054e992fb3ecd3255986470da55f1be6b90d931" Size="385024"/>
   <File Name="data/nui-storage/Code Cache/js/312ce5025f9545c0_0" Hash="1f5c8527ff91186b7e8e93fa4ddf10ffef126ddd" Size="598880"/>
@@ -480,8 +480,8 @@
   <File Name="data/nui-storage/Code Cache/js/e9ae043ace2dbbab_0" Hash="943ea0e8e2908b86f0e86eb732db294eff6f992f" Size="597696"/>
   <File Name="data/nui-storage/Code Cache/js/ea57c25dd74a53e5_0" Hash="12f34fa16ba0f365248b8aad714522aa8f589969" Size="385016"/>
   <File Name="data/nui-storage/Code Cache/js/f1f3144cf52aab37_0" Hash="40afded6b36337041332ba0487d7597f1b3710f1" Size="245"/>
-  <File Name="data/nui-storage/Code Cache/js/f911a92379eabd4f_0" Hash="d7bf69acba6cda9772dc4d96b798a342f0d5680f" Size="193"/>
-  <File Name="data/nui-storage/Code Cache/js/fa6373d4fba31092_0" Hash="b7888ab8fe7511700d8f083ac99ca247706554f4" Size="219"/>
+  <File Name="data/nui-storage/Code Cache/js/f911a92379eabd4f_0" Hash="3fb068bcc39099917d905535fffa691b15cd9544" Size="193"/>
+  <File Name="data/nui-storage/Code Cache/js/fa6373d4fba31092_0" Hash="7824e8dcc3773e06be527728c23d40423c7a6e7c" Size="219"/>
   <File Name="data/nui-storage/Code Cache/js/index" Hash="c27ca848427fe87f5cf4d0e0e3cd57151b0d820d" Size="24"/>
   <File Name="data/nui-storage/Code Cache/js/index-dir/the-real-index" Hash="30b55c90566f66974058bc3a22aec8a068921faf" Size="504"/>
   <File Name="data/nui-storage/Code Cache/wasm/index" Hash="c27ca848427fe87f5cf4d0e0e3cd57151b0d820d" Size="24"/>
@@ -570,19 +570,19 @@
   <File Name="data/nui-storage/GPUCache/data_1" Hash="70146953c876d4a85deb54689cdb6d321109689d" Size="270336"/>
   <File Name="data/nui-storage/GPUCache/data_2" Hash="59d10a893ef321a706a9255176761366115bedcb" Size="8192"/>
   <File Name="data/nui-storage/GPUCache/data_3" Hash="5cf26b3420fc0302cd0a71e8d029739b8765be27" Size="8192"/>
-  <File Name="data/nui-storage/GPUCache/index" Hash="fd0b4e65d45cae1f6de765196d482dbdba823a58" Size="262512"/>
-  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/000004.log" Hash="15ce136527ac21ab3516165f04e5eeafc25992fa" Size="11740"/>
+  <File Name="data/nui-storage/GPUCache/index" Hash="1379151704857b67fad75b424622556396c20c22" Size="262512"/>
+  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/000004.log" Hash="6514b769e8fab3a81e0c18a7d88e2b243bafd9dd" Size="11759"/>
   <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/000005.ldb" Hash="b6223f101efbae10dc93811229577b17b74ea3be" Size="535"/>
   <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/CURRENT" Hash="44e0fa1b517dbf802b18faf0785eeea6ac51594b" Size="16"/>
   <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/LOCK" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/LOG" Hash="ef44d2304f8323506dca04e333349920da976e8a" Size="436"/>
-  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/LOG.old" Hash="4049f2d973d5d15412829d6db9ae23d5efd7f4c4" Size="436"/>
+  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/LOG" Hash="ec052006faef41db3854831ce61c108bbf1b4bd7" Size="436"/>
+  <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/LOG.old" Hash="ef44d2304f8323506dca04e333349920da976e8a" Size="436"/>
   <File Name="data/nui-storage/IndexedDB/https_nui-game-internal_0.indexeddb.leveldb/MANIFEST-000001" Hash="5ae0de90cd9df17800012a04eba1f426e5567603" Size="71"/>
-  <File Name="data/nui-storage/Local Storage/leveldb/000003.log" Hash="8f2fb246e79677fe5b5d2bd8c9e5f96bf9f1a8fe" Size="3769"/>
+  <File Name="data/nui-storage/Local Storage/leveldb/000003.log" Hash="e9aab632e5d7a562297a5b71c1a4b76ac0d01d61" Size="3873"/>
   <File Name="data/nui-storage/Local Storage/leveldb/CURRENT" Hash="44e0fa1b517dbf802b18faf0785eeea6ac51594b" Size="16"/>
   <File Name="data/nui-storage/Local Storage/leveldb/LOCK" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/nui-storage/Local Storage/leveldb/LOG" Hash="bccd73507847f09465c9bf4f0b2492e0b513410c" Size="369"/>
-  <File Name="data/nui-storage/Local Storage/leveldb/LOG.old" Hash="3026f2dccd60a9dc15b0bb867642bdfa220400e8" Size="372"/>
+  <File Name="data/nui-storage/Local Storage/leveldb/LOG" Hash="d628c115c57d9b21e6fb7276dfcc61e1f1beb158" Size="372"/>
+  <File Name="data/nui-storage/Local Storage/leveldb/LOG.old" Hash="bccd73507847f09465c9bf4f0b2492e0b513410c" Size="369"/>
   <File Name="data/nui-storage/Local Storage/leveldb/MANIFEST-000001" Hash="d5b5bbf396dc291274584ef71f444f420b6056f1" Size="41"/>
   <File Name="data/nui-storage/Network/Cookies" Hash="d14fab067921b40004e9ff2153d31feb8af8a25a" Size="20480"/>
   <File Name="data/nui-storage/Network/Cookies-journal" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
@@ -590,15 +590,15 @@
   <File Name="data/nui-storage/Network/NetworkDataMigrated" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
   <File Name="data/nui-storage/Network/Reporting and NEL" Hash="6fa2325f7df53807f235d6328d423da85d4040ef" Size="36864"/>
   <File Name="data/nui-storage/Network/Reporting and NEL-journal" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/nui-storage/Network/TransportSecurity" Hash="8473b97bc4b8eb9628779cbfc55c04d4ecde873e" Size="203"/>
-  <File Name="data/nui-storage/Session Storage/000003.log" Hash="b85c0825ac715b9e5e597f539046808c4d0041a0" Size="3394"/>
+  <File Name="data/nui-storage/Network/TransportSecurity" Hash="d98e0e8180fa3b1309bd7dbae928361f5c0556bb" Size="203"/>
+  <File Name="data/nui-storage/Session Storage/000003.log" Hash="c217d58ea1c4efb0ab0024409e90062651b8044b" Size="3507"/>
   <File Name="data/nui-storage/Session Storage/CURRENT" Hash="44e0fa1b517dbf802b18faf0785eeea6ac51594b" Size="16"/>
   <File Name="data/nui-storage/Session Storage/LOCK" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/nui-storage/Session Storage/LOG" Hash="353eed5a35d18c6c983092349f975c69610ab92a" Size="357"/>
-  <File Name="data/nui-storage/Session Storage/LOG.old" Hash="f83609c8c5cdaaa20c02d817ac0f2818dc125136" Size="360"/>
+  <File Name="data/nui-storage/Session Storage/LOG" Hash="462dcaf46df714d26b3763915fd8d655ed921cca" Size="360"/>
+  <File Name="data/nui-storage/Session Storage/LOG.old" Hash="353eed5a35d18c6c983092349f975c69610ab92a" Size="357"/>
   <File Name="data/nui-storage/Session Storage/MANIFEST-000001" Hash="d5b5bbf396dc291274584ef71f444f420b6056f1" Size="41"/>
   <File Name="data/nui-storage/WebStorage/QuotaManager" Hash="7c5534e54ec470d2845aa20ea67e5c2c5cd52161" Size="40960"/>
-  <File Name="data/nui-storage/WebStorage/QuotaManager-journal" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
+  <File Name="data/nui-storage/WebStorage/QuotaManager-journal" Hash="67e2a99e77e3cb9318198462ab98ea87118de814" Size="12824"/>
   <File Name="data/server-cache/cache_01b9079f07fba2df2c799581e0ea18f149696860" Hash="01b9079f07fba2df2c799581e0ea18f149696860" Size="1606210"/>
   <File Name="data/server-cache/cache_0aee8f347c8577ab14958f939ffe447373d49913" Hash="0aee8f347c8577ab14958f939ffe447373d49913" Size="239616"/>
   <File Name="data/server-cache/cache_0cd2c50ded9f004c1263c796cafa883406cb5664" Hash="0cd2c50ded9f004c1263c796cafa883406cb5664" Size="176128"/>
@@ -682,10 +682,10 @@
   <File Name="data/server-cache/cache_ff644953e8b102248c233343466439896fdcbbcd" Hash="ff644953e8b102248c233343466439896fdcbbcd" Size="1027346"/>
   <File Name="data/server-cache/cache_ff6559454fd819e9cecf318d88282f5942ef91da" Hash="ff6559454fd819e9cecf318d88282f5942ef91da" Size="6963200"/>
   <File Name="data/server-cache/db/000019.ldb" Hash="b0ee9736fde8040b0fcaa02f92de2a60b72eb559" Size="61485"/>
-  <File Name="data/server-cache/db/000060.log" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/server-cache/db/CURRENT" Hash="8f266c12bc71df2cce39b5ef0a9bdf0cb114ab9d" Size="16"/>
+  <File Name="data/server-cache/db/000062.log" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
+  <File Name="data/server-cache/db/CURRENT" Hash="4a030af344d39d480c1e1775e4b22f60393826ea" Size="16"/>
   <File Name="data/server-cache/db/LOCK" Hash="da39a3ee5e6b4b0d3255bfef95601890afd80709" Size="0"/>
-  <File Name="data/server-cache/db/MANIFEST-000059" Hash="f96db09b7ec9f88634c712abbf98355f57a8a74f" Size="133"/>
+  <File Name="data/server-cache/db/MANIFEST-000061" Hash="5256655bff1758979c4345749107c519b85043fa" Size="133"/>
   <File Name="gen/cpp_templates.zip" Hash="a54d2046eb612a108030dbd9669f7a3f1090eb34" Size="455144"/>
   <File Name="gen/typemap_mojo_application_state" Hash="1c94c6ca89a1825594bef1b4e3a35e3e50666fec" Size="508"/>
   <File Name="gen/typemap_mojo_big_buffer" Hash="6d6a84a993eff8a10f8a080723ab1f587cf2bdf3" Size="473"/>
@@ -1040,5 +1040,6 @@
   <File Name="logs/CitizenFX_log_2026-07-25T071406.log" Hash="81684669b9df60996994716e5557f16d04919dda" Size="73842"/>
   <File Name="logs/CitizenFX_log_2026-07-25T091614.log" Hash="334275b5d76420a3ae4d101b057450da6150ee06" Size="74653"/>
   <File Name="logs/CitizenFX_log_2026-07-25T095654.log" Hash="5dae143f13c6211bb0d8a8d1deeefc22f8ba89f5" Size="74698"/>
+  <File Name="logs/CitizenFX_log_2026-07-25T101226.log" Hash="fb06cfec23949ae7c1ed0b75dd10dc6964dca16e" Size="73686"/>
   <File Name="mods/sculpture_revival.rpf" Hash="5380eaac39bf31e20bd017e32c5a2422af5235b8" Size="3163648"/>
 </FileBuild>
