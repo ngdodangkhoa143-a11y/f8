@@ -9,7 +9,7 @@ interface CustomAuthModalProps {
   onClose: () => void;
 }
 
-const PUBLIC_API_BASE = 'http://1.53.29.127/auth';
+const PUBLIC_API_BASE = 'http://26.204.70.37:3030/auth';
 const LOCAL_API_BASE = 'http://127.0.0.1:3030/auth';
 
 let currentApiBase = PUBLIC_API_BASE;
