@@ -452,7 +452,7 @@ struct
 
 		if (state == HS_LOADED)
 		{
-			if (_isScWaitingForInit())
+			if (false)
 			{
 				return;
 			}
@@ -1394,7 +1394,7 @@ static void ExitCleanly()
 
 static BOOL ShellExecuteExAHook(SHELLEXECUTEINFOA *pExecInfo)
 {
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 	auto cli = const_cast<wchar_t*>(va(L"\"%s\" %s -switchcl", hostData->gameExePath, ToWide(
 		pExecInfo->lpParameters ?
 			pExecInfo->lpParameters : ""
@@ -1873,12 +1873,17 @@ static HookFunction hookFunction([] ()
 
 		void(*_processEntitlements)();
 		hook::set_call(&_processEntitlements, location - 50);
+		
+		// F8 Standalone: Completely disable the game's entitlement processing
+		// to prevent it from verifying our fake ticket and showing ACTIVATION REQUIRED.
+		hook::return_function((uintptr_t)_processEntitlements);
 
 		g_profileSettings = hook::get_address<void**>(hook::get_pattern("48 8B 0D ? ? ? ? 45 33 C0 B2 01 48 8B"), 3, 7);
 
 		OnLookAliveFrame.Connect([_processEntitlements]()
 		{
-			_processEntitlements();
+			// F8 Standalone: Disabled _processEntitlements
+			// _processEntitlements();
 
 			if (!Instance<ICoreGameInit>::Get()->GetGameLoaded())
 			{

@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.UnguessableToken": {
+      "public_headers": [
+        "base/unguessable_token.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/unguessable_token_mojom_traits.h"
+      ],
+      "typename": "::base::UnguessableToken",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

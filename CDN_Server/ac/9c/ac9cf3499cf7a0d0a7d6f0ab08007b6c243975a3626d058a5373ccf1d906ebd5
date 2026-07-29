@@ -1,0 +1,17 @@
+{
+  "c++": {
+    "mojo_base.mojom.BigString": {
+      "public_headers": [],
+      "traits_headers": [
+        "mojo/public/cpp/base/big_string_mojom_traits.h"
+      ],
+      "typename": "::std::string",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

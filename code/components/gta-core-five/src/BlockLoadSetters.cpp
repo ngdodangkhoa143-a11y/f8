@@ -96,6 +96,11 @@ static bool g_launchedGame = false;
 
 static void WaitForInitLoopWrap()
 {
+	if (g_launchedGame)
+	{
+		return;
+	}
+
 	// certain executables may recheck activation after connection, and want to perform this state change after 12 - ignore those cases
 	*g_initState = MapInitState(6);
 
@@ -153,15 +158,14 @@ void FiveGameInit::LoadGameFirstLaunch(bool(*callBeforeLoad)())
 
 	OnGameFrame.Connect([=] ()
 	{
-		if (g_shouldSetState)
+		// F8 Standalone: ALWAYS force State 6 (Activation Check) to State 7 (Passed)
+		// The game may re-check activation at 17% during server join.
+		if (*g_initState == MapInitState(6))
 		{
-			if (*g_initState == MapInitState(6))
-			{
-				*g_initState = MapInitState(7);
-				g_triedLoading = true;
+			*g_initState = MapInitState(7);
+			g_triedLoading = true;
 
-				g_shouldSetState = false;
-			}
+			g_shouldSetState = false;
 		}
 
 		static bool isLoading = false;

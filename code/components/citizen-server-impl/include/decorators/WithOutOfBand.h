@@ -32,7 +32,7 @@ namespace fx
 				// workaround a VS15.7 compiler bug that drops `const` qualifier in the std::function
 				fwRefContainer<ServerImpl> tempServer = server;
 
-				if (receivedDataLength >= 4 && *reinterpret_cast<const int*>(receivedData) == -1)
+				if (receivedDataLength >= 4 && *reinterpret_cast<const uint32_t*>(receivedData) == 0xFEFEFEFE)
 				{
 					const unsigned char* begin = receivedData + 4;
 					const size_t len = receivedDataLength - 4;

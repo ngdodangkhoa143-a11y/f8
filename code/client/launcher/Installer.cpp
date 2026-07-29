@@ -65,7 +65,7 @@ static std::wstring GetRootPath()
 	if (!appDataPath.empty())
 	{
 #ifdef GTA_FIVE
-		appDataPath += L"\\FiveM";
+		appDataPath += L"\\F8";
 #elif defined(IS_RDR3)
 		appDataPath += L"\\RedM";
 #else
@@ -209,7 +209,7 @@ bool Install_PerformInstallation()
 		if (CreateProcess(nullptr, const_cast<wchar_t*>(va(L"\"%s\"", targetExePath)),
 			nullptr, nullptr, FALSE, CREATE_BREAKAWAY_FROM_JOB | CREATE_SUSPENDED, nullptr, nullptr, &si, &pi))
 		{
-			static HostSharedData<CfxState> hostData("CfxInitState");
+			static HostSharedData<CfxState> hostData("F8InitState");
 			hostData->inJobObject = false;
 			hostData->SetInitialPid(pi.dwProcessId);
 
@@ -456,6 +456,16 @@ void Install_RunPostInstall()
 
 bool Install_RunInstallMode()
 {
+	wchar_t moduleName[512];
+	if (GetModuleFileName(GetModuleHandle(nullptr), moduleName, _countof(moduleName)) != 0)
+	{
+		// Force install to AppData if we are not already running from there
+		if (StrStrIW(moduleName, L"\\AppData\\Local\\" PRODUCT_NAME L"\\") == nullptr)
+		{
+			return Install_PerformInstallation();
+		}
+	}
+
 	// if we're already installed 'sufficiently', this isn't a new install, but we *should* update external links
 	if (GetFileAttributes(MakeRelativeCitPath(L"CoreRT.dll").c_str()) != INVALID_FILE_ATTRIBUTES ||
 		GetFileAttributes(MakeRelativeCitPath(L"citizen-resources-client.dll").c_str()) != INVALID_FILE_ATTRIBUTES ||
@@ -467,46 +477,7 @@ bool Install_RunInstallMode()
 		return false;
 	}
 
-	// if we're running from a folder that 'smells' like a downloads folder, run as installer
-	static HostSharedData<CfxState> hostData("CfxInitState");
-
-	bool isDownloadsFolder = false;
-
-	if (StrStrIW(hostData->GetInitPath().c_str(), L"downloads") != nullptr ||
-		StrStrIW(hostData->GetInitPath().c_str(), L"\\dls") != nullptr ||
-		StrStrIW(hostData->GetInitPath().c_str(), L"\\Desktop") != nullptr)
-	{
-		isDownloadsFolder = true;
-	}
-
-	size_t maxOtherFiles = (isDownloadsFolder) ? 2 : 5;
-
-	// count the amount of files 'together' with us in our folder
-	fs::directory_iterator it(hostData->GetInitPath()), end;
-	size_t numFiles = std::count_if(it, end, [](const fs::directory_entry& entry)
-	{
-		try
-		{
-			if (entry.path().filename().string()[0] == '.')
-			{
-				return false;
-			}
-		}
-		catch (std::exception& e)
-		{
-
-		}
-
-		return true;
-	});
-
-	// compare
-	if (numFiles <= maxOtherFiles)
-	{
-		return false;
-	}
-
-	return Install_PerformInstallation();
+	return false;
 }
 #else
 bool Install_RunInstallMode()

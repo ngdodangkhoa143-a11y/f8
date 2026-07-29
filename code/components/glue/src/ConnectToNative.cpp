@@ -122,7 +122,7 @@ void RestartGameToOtherBuild(int build, int pureLevel, std::wstring poolSizesInc
 
 	HANDLE switchEvent = CreateEventW(&securityAttributes, TRUE, FALSE, NULL);
 
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 	auto cli = fmt::sprintf(L"\"%s\" %s %s %s -switchcl:%d \"%s://connect/%s\"",
 	hostData->gameExePath,
@@ -374,7 +374,7 @@ static WRL::ComPtr<IShellLink> MakeShellLink(const ServerLink& link)
 		{
 		}
 
-		static HostSharedData<CfxState> hostData("CfxInitState");
+		static HostSharedData<CfxState> hostData("F8InitState");
 
 		wchar_t imageFileName[1024];
 
@@ -1384,7 +1384,7 @@ static void ProtocolRegister(const wchar_t* name, const wchar_t* cls)
 		return; \
 	}
 
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 	HKEY key = NULL;
 	std::wstring command = fmt::sprintf(L"\"%s\" \"%%1\"", hostData->gameExePath);
@@ -1439,7 +1439,7 @@ static void ProtocolRegister(const wchar_t* name, const wchar_t* cls)
 
 void Component_RunPreInit()
 {
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 #ifndef _DEBUG
 	if (hostData->IsGameProcess())

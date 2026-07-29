@@ -95,7 +95,7 @@ void NetLibraryImplV2::CreateResources()
 
 	m_host->intercept = [](ENetHost* host, ENetEvent*)
 	{
-		if (*(int*)host->receivedData == -1)
+		if (*(uint32_t*)host->receivedData == 0xFEFEFEFE)
 		{
 			base->ProcessOOB(NetAddress(&host->receivedAddress), (char*)host->receivedData + 4, host->receivedDataLength - 4);
 			return 1;

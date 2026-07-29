@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.MemoryPressureLevel": {
+      "public_headers": [
+        "base/memory/memory_pressure_listener.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/memory_pressure_level_mojom_traits.h"
+      ],
+      "typename": "::base::MemoryPressureListener::MemoryPressureLevel",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

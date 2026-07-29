@@ -263,15 +263,21 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 	// fetch remote caches
 	cacheFile_t cacheFile;
 
-	static std::vector<char> cachesFile(131072);
+	static std::vector<char> cachesFile(1048576);
 
 	bool success = false;
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "Updater_RunUpdate started\n"); fclose(dbgLog); }
+
 	for (auto& cacheName : wantedCaches)
 	{
-		char bootstrapVersion[256];
+		char bootstrapVersion[256] = { 0 };
 
 		auto contentHeaders = std::make_shared<HttpHeaderList>();
-		int result = DL_RequestURL(va(CFX_UPDATER_URL "/heads/%s/%s?time=%lld", cacheName, GetUpdateChannel(), _time64(NULL)), bootstrapVersion, sizeof(bootstrapVersion), contentHeaders);
+		int result = DL_RequestURL(va(CFX_UPDATER_URL "/heads/%s/%s?time=%lld", cacheName.c_str(), GetUpdateChannel(), _time64(NULL)), bootstrapVersion, sizeof(bootstrapVersion), contentHeaders);
+
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "DL_RequestURL result: %d, version: %s\n", result, bootstrapVersion); fclose(dbgLog); }
 
 		if (result != 0 && !success)
 		{
@@ -279,12 +285,24 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 			return false;
 		}
 
-		success = true;
+		if (result == 0)
+		{
+			success = true;
+		}
 
-		auto v = contentHeaders->find("x-amz-meta-branch-version");
-		auto m = contentHeaders->find("x-amz-meta-branch-manifest");
+		// parse the version string
+		std::string branchVersionStr(bootstrapVersion);
 
-		if (v == contentHeaders->end() || m == contentHeaders->end())
+		std::string manifestHash;
+
+		int spaceIndex = branchVersionStr.find_first_of(" \n");
+
+		if (spaceIndex != std::string::npos)
+		{
+			manifestHash = branchVersionStr.substr(0, spaceIndex);
+		}
+
+		if (manifestHash.empty())
 		{
 			continue;
 		}
@@ -292,15 +310,27 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 		// get the caches we want to update
 		cache_ptr cache = std::make_shared<cache_t>();
 		cache->name = cacheName;
-		cache->version = std::stoi(v->second);
-		cache->manifestUrl = GetObjectURL(m->second);
+		
+		auto it = contentHeaders->find("x-amz-meta-bootstrap-version");
+		if (it != contentHeaders->end() && !it->second.empty()) {
+			cache->version = atoi(it->second.c_str());
+		} else {
+			cache->version = 1;
+		}
+
+		cache->manifestUrl = GetObjectURL(manifestHash);
 
 		cacheFile.GetCaches().push_back(cache);
 	}
 
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "cacheFile.GetCaches().size() = %zu\n", cacheFile.GetCaches().size()); fclose(dbgLog); }
+
 	// error out if the remote caches file is empty
 	if (cacheFile.GetCaches().empty())
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "ERROR: Remote caches empty!\n"); fclose(dbgLog); }
 		MessageBox(NULL, ToWide("Remote caches file could not be parsed. Check if " CFX_UPDATER_URL " is available in your web browser.").c_str(), L"O\x448\x438\x431\x43A\x430", MB_OK | MB_ICONSTOP);
 		return false;
 	}
@@ -415,9 +445,14 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 		}
 	}
 
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "needsUpdate.size() = %zu\n", needsUpdate.size()); fclose(dbgLog); }
+
 	// if we don't need to update, return true
 	if (needsUpdate.size() == 0)
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "No updates needed, returning true\n"); fclose(dbgLog); }
 		return true;
 	}
 
@@ -430,11 +465,20 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 
 	for (auto& [localCache, cache] : needsUpdate)
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "Fetching manifest for cache: %s from %s\n", cache->name.c_str(), cache->manifestUrl.c_str()); fclose(dbgLog); }
+
 		int result = DL_RequestURL(cache->manifestUrl.c_str(), cachesFile.data(), cachesFile.size());
+
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "Manifest download result: %d, dataLen=%zu\n", result, strlen(cachesFile.data())); fclose(dbgLog); }
 
 		manifest_t manifest(cache);
 		manifest.Parse(cachesFile.data());
 		cache->manifest = cachesFile.data();
+
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "Manifest parsed, files count: %zu\n", manifest.GetFiles().size()); fclose(dbgLog); }
 
 		// check if we have a valid manifest
 		bool localDiff = false;
@@ -478,6 +522,9 @@ bool Updater_RunUpdate(std::initializer_list<std::string> wantedCachesList)
 			}
 		}
 	}
+
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "queuedFiles.size() = %zu, about to UI_DoCreation\n", queuedFiles.size()); fclose(dbgLog); }
 
 	UI_DoCreation();
 	CL_InitDownloadQueue();
@@ -615,6 +662,9 @@ bool CheckFileOutdatedWithUI(const wchar_t* fileName, const std::vector<std::arr
 	// if default changes, fix shouldCheck below
 	bool fileOutdated = true;
 
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "CheckFileOutdatedWithUI entered for %S\n", fileName); fclose(dbgLog); }
+
 	HANDLE hFile = CreateFile(fileName, GENERIC_READ | SYNCHRONIZE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, NULL);
 
 	if (hFile != INVALID_HANDLE_VALUE)
@@ -712,6 +762,13 @@ bool CheckFileOutdatedWithUI(const wchar_t* fileName, const std::vector<std::arr
 							return false;
 						}
 					}
+				}
+
+				MSG msg;
+				while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+				{
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
 				}
 
 				DWORD bytesRead;

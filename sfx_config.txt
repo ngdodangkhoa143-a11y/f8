@@ -1,0 +1,4 @@
+;!@Install@!UTF-8!
+Title="GTA5 F8 Client"
+ExecuteFile="F8.exe"
+;!@InstallEnd@!

@@ -30,7 +30,7 @@ __declspec(dllexport) void SetHooksDll(IGameSpecToHooks* dll);
 bool LauncherInterface::PreLoadGame(void* cefSandbox)
 {
 	// if we don't have adhesive, set our gamePid
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->IsMasterProcess())
 	{

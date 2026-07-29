@@ -883,7 +883,7 @@ static InitFunction initFunction([]()
 		nuiGi.OnInitVfs();
 	}, 100);
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->IsGameProcess())
 	{

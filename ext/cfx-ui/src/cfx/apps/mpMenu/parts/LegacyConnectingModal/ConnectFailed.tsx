@@ -7,7 +7,6 @@ import {
   BrandIcon,
   Flex,
   Pad,
-  Modal,
   Separator,
   Text,
   TextBlock,
@@ -102,7 +101,7 @@ export const ConnectFailed = observer(function ConnectFailed(props: ConnectFaile
         </Flex>
       </Pad>
 
-      <Modal.Footer>
+      <div style={{ padding: '15px 20px', borderTop: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.2)' }}>
         <Flex repell>
           {!!extraActions?.length && (
             <ButtonBar>
@@ -120,7 +119,7 @@ export const ConnectFailed = observer(function ConnectFailed(props: ConnectFaile
             onClick={onClose}
           />
         </Flex>
-      </Modal.Footer>
+      </div>
     </>
   );
 });

@@ -1797,7 +1797,10 @@ global.require = m.exports.require;
 
 		node::SetProcessExitHandler(env, [](node::Environment*, int exitCode)
 		{
-			FatalError("Node.js exiting (exit code %d)\nSee console for details", exitCode);
+			if (exitCode != 0)
+			{
+				FatalError("Node.js exiting (exit code %d)\nSee console for details", exitCode);
+			}
 		});
 
 		g_envRuntimes[env] = this;
@@ -2334,7 +2337,7 @@ void V8ScriptGlobals::Initialize()
 #ifndef IS_FXSERVER
 		if (!f)
 		{
-			static HostSharedData<CfxState> hostData("CfxInitState");
+			static HostSharedData<CfxState> hostData("F8InitState");
 			auto cli = va(L"\"%s\" -switchcl",
 				hostData->gameExePath);
 

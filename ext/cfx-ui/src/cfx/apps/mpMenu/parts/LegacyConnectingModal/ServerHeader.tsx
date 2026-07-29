@@ -34,7 +34,18 @@ export const ServerHeader = observer(function ServerHeader(props: ServerHeaderPr
               <ServerIcon type="details" size="small" server={server} />
 
               <Flex vertical>
-                <ServerTitle size="xxlarge" title={server.projectName || server.hostname} />
+                <div style={{
+                  fontSize: '3rem',
+                  fontWeight: 900,
+                  background: 'linear-gradient(45deg, #00a8ff, #005f99)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.5))',
+                  textAlign: 'center',
+                  fontFamily: 'Montserrat, sans-serif'
+                }}>
+                  GTA5F8
+                </div>
               </Flex>
             </Flex>
           </Flex>
@@ -53,14 +64,13 @@ export const ServerHeader = observer(function ServerHeader(props: ServerHeaderPr
 });
 
 function getStyle(server: IServerView): React.CSSProperties {
-  const clr = ui.color('main', 'pure', 0.25);
-  const clr2 = ui.color('main', 'pure', 0.9);
-  const clr3 = ui.color('main');
+  const clr = 'rgba(14, 20, 25, 0.25)';
+  const clr2 = 'rgba(14, 20, 25, 0.4)';
+  const clr3 = 'rgba(14, 20, 25, 0.6)';
 
   const images = [`linear-gradient(${clr}, ${clr2} 75%, ${clr3})`, `url(${server.bannerConnecting})`];
 
   return {
-    // margin: '2px 2px 0 2px',
     backgroundImage: images.join(','),
     backgroundSize: 'cover',
     backgroundPosition: 'center center',

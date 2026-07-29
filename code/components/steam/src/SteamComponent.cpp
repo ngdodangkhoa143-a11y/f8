@@ -125,7 +125,7 @@ static void RunChildLauncher(bool syncWait = false)
 void SteamComponent::Initialize()
 {
 	// launch the presence dummy dummy if needed
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 	if (hostData->IsMasterProcess() || hostData->IsGameProcess())
 	{
@@ -427,7 +427,7 @@ void SteamComponent::InitializePresence()
 		wchar_t ourDirectory[MAX_PATH];
 		GetCurrentDirectory(sizeof(ourDirectory), ourDirectory);
 
-		static HostSharedData<CfxState> hostData("CfxInitState");
+		static HostSharedData<CfxState> hostData("F8InitState");
 
 		std::wstring commandLine = va(L"\"%s\" -steamchild:%d", ourPath, hostData->GetInitialPid());
 

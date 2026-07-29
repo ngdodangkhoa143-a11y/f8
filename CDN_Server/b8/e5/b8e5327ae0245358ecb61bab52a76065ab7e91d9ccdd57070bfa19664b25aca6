@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.MemoryAllocatorDumpCrossProcessUid": {
+      "public_headers": [
+        "base/trace_event/memory_allocator_dump_guid.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/memory_allocator_dump_cross_process_uid_mojom_traits.h"
+      ],
+      "typename": "::base::trace_event::MemoryAllocatorDumpGuid",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.TextDirection": {
+      "public_headers": [
+        "base/i18n/rtl.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/text_direction_mojom_traits.h"
+      ],
+      "typename": "::base::i18n::TextDirection",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

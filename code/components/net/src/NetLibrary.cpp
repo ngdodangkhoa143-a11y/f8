@@ -385,7 +385,7 @@ void NetLibrary::ProcessOOB(const NetAddress& from, const char* oob, size_t leng
 #if defined(GTA_FIVE) || defined(GTA_NY)
 				SetWindowText(CoreGetGameWindow(), va(
 #ifdef GTA_FIVE
-					L"FiveM® by Cfx.re"
+					L"F8 by Cfx.re"
 #elif defined(GTA_NY)
 					L"LibertyM™ by Cfx.re"
 #endif
@@ -579,7 +579,19 @@ static std::mutex g_netFrameMutex;
 
 inline uint64_t GetGUID()
 {
-	return (uint64_t)(0x210000100000000 | m_tempGuid);
+	auto emailVar = console::GetDefaultContext()->GetVariableManager()->FindEntryRaw("f8_auth_email");
+	std::string email = emailVar ? emailVar->GetValue() : "";
+	if (email.empty()) {
+		return (uint64_t)(0x210000100000000 | m_tempGuid);
+	}
+	
+	uint64_t hash = 14695981039346656037ULL;
+	for (char c : email) {
+		hash ^= (uint64_t)(unsigned char)c;
+		hash *= 1099511628211ULL;
+	}
+	
+	return (uint64_t)(0x2100000000000000ULL | (hash & 0x00FFFFFFFFFFFFFFULL));
 }
 
 uint64_t NetLibrary::GetGUID()
@@ -752,7 +764,7 @@ struct GetAuthSessionTicketResponse_t
 
 static concurrency::task<std::optional<std::string>> ResolveUrl(const std::string& rootUrl)
 {
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 	try
 	{
@@ -953,7 +965,18 @@ concurrency::task<void> NetLibrary::ConnectToServer(const std::string& rootUrl)
 
 	static fwMap<fwString, fwString> postMap;
 	postMap["method"] = "initConnect";
-	postMap["name"] = GetPlayerName();
+
+	auto usernameVar = console::GetDefaultContext()->GetVariableManager()->FindEntryRaw("f8_auth_username");
+	std::string username = usernameVar ? usernameVar->GetValue() : "";
+	postMap["name"] = username.empty() ? GetPlayerName() : username;
+
+	std::string discordId;
+	Instance<ICoreGameInit>::Get()->GetData("discord_id", &discordId);
+	
+	if (!discordId.empty())
+	{
+		postMap["discord_id"] = discordId;
+	}
 	postMap["protocol"] = va("%d", NETWORK_PROTOCOL);
 
 #if defined(IS_RDR3)
@@ -2048,7 +2071,7 @@ void NetLibrary::SendOutOfBand(const NetAddress& address, const char* format, ..
 {
 	static char buffer[32768];
 
-	*(int*)buffer = -1;
+	*(uint32_t*)buffer = 0xFEFEFEFE;
 
 	va_list ap;
 	va_start(ap, format);

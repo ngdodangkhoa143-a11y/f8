@@ -1,0 +1,20 @@
+{
+  "c++": {
+    "mojo_base.mojom.LOGFONT": {
+      "public_headers": [
+        "base/win/windows_full.h",
+        "base/win/windows_types.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/logfont_win_mojom_traits.h"
+      ],
+      "typename": "::LOGFONT",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

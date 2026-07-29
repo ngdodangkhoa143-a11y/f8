@@ -40,9 +40,24 @@ void ComponentLoader::Initialize()
 
 	// parse and load additional components
 	fwPlatformString componentsName = _P("components.json");
-	FILE* componentCache = _pfopen(MakeRelativeCitPath(componentsName).c_str(), _P("rb"));
+	fwPlatformString resolvedPath = MakeRelativeCitPath(componentsName);
+
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog)
+	{
+		fwprintf(dbgLog, L"ComponentLoader::Initialize resolvedPath: %s\n", resolvedPath.c_str());
+		fclose(dbgLog);
+	}
+
+	FILE* componentCache = _pfopen(resolvedPath.c_str(), _P("rb"));
 	if (!componentCache)
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog)
+		{
+			fprintf(dbgLog, "ComponentLoader::Initialize: _pfopen returned NULL for components.json. errno=%d\n", errno);
+			fclose(dbgLog);
+		}
 		FatalError("Could not find component cache storage file (components.json).");
 	}
 

@@ -297,7 +297,7 @@ static InitFunction initFunction([]()
 
 	fx::ScriptEngine::RegisterNativeHandler("SET_DISCORD_RICH_PRESENCE_ACTION", [](fx::ScriptContext& context)
 	{
-		static HostSharedData<CfxState> hostData("CfxInitState");
+		static HostSharedData<CfxState> hostData("F8InitState");
 		static auto linkProtocolConnect = ToNarrow(hostData->GetLinkProtocol(L"://connect/"));
 
 		int idx = context.GetArgument<int>(0);

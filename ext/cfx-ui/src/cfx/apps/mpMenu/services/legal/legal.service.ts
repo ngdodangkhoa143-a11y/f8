@@ -41,7 +41,7 @@ export class LegalService {
   }
 
   constructor() {
-    this._hasUserAccepted = this.reviveHasUserAccepted();
+    this._hasUserAccepted = true; // Hardcoded to bypass TOS
 
     makeAutoObservable(this);
   }

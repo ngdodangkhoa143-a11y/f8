@@ -425,7 +425,7 @@ static HookFunction hookFunction([]()
 	// don't allow SetCursorPos during focus
 	hook::iat("user32.dll", SetCursorPosWrap, "SetCursorPos");
 
-	/*static HostSharedData<CfxState> initState("CfxInitState");
+	/*static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->isReverseGame)
 	{

@@ -394,7 +394,7 @@ static InitFunction initFunction([] ()
 				return L"";
 			};
 
-			brandName = L"FiveM";
+			brandName = L"F8";
 			brandingEmoji = getDayEmoji();
 
 #if defined(IS_RDR3)

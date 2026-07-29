@@ -672,7 +672,7 @@ HRESULT Texture2DWrap::GetSharedHandle(HANDLE* pSharedHandle)
 	HANDLE handle;
 	HRESULT hr = m_resource1->CreateSharedHandle(NULL, DXGI_SHARED_RESOURCE_READ, NULL, &handle);
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (SUCCEEDED(hr))
 	{

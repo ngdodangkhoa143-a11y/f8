@@ -343,7 +343,7 @@ std::optional<int> EnsureGamePath()
 	WritePrivateProfileString(L"Game", pathKey, gamePath.substr(0, gamePath.length() - exeNameLength).c_str(), fpath.c_str());
 
 	{
-		static HostSharedData<CfxState> initState("CfxInitState");
+		static HostSharedData<CfxState> initState("F8InitState");
 		initState->gameDirectory[0] = L'\0';
 	}
 

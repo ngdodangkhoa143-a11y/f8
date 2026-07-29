@@ -322,6 +322,16 @@ public:
 
 		std::string titleAccessToken;
 
+		// F8 Standalone: Instantly return a successful dummy XML so we don't hit external servers
+		// that will fail/hang and cause the game to think validation failed (ACTIVATION REQUIRED).
+		std::string dummyXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response><Status>1</Status><Result><Data>AAAA</Data></Result></Response>";
+		if (isEntitlementsV3) {
+			dummyXml = "AAAA"; // v3 just wants the raw data? Actually we just provide the string
+		}
+		
+		cb("", dummyXml);
+		return;
+
 		{
 			auto r = cpr::Post(cpr::Url{ "http://ros.citizenfx.internal/launcher/11/launcherservices/app.asmx/GetTitleAccessToken" }, cpr::Body{ EncryptROSData(BuildPOSTString({
 				{ "ticket", ticket },

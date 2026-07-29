@@ -90,46 +90,22 @@ static InitFunction initFunction([]()
 						HttpRequestOptions opts;
 						opts.ipv4 = true;
 
-						httpClient->DoPostRequest("https://cfx.re/api/register/?v=2", jsonData.dump(), opts, [instance, tlm](bool success, const char* data, size_t length)
-						{
-							if (!success)
-							{
-								if (authDelay < 15min)
-								{
-									authDelay *= 2;
-								}
-
-								setNucleusTimeout = msec() + authDelay;
-							}
-							else
-							{
-								auto jsonData = nlohmann::json::parse(std::string(data, length));
-
-								trace("^1        fff                          \n^1  cccc ff   xx  xx     rr rr    eee  \n^1cc     ffff   xx       rrr  r ee   e \n^1cc     ff     xx   ... rr     eeeee  \n^1 ccccc ff   xx  xx ... rr      eeeee \n                                     ^7\n");
-								trace("^2Authenticated with cfx.re Nucleus: ^7https://%s/\n", jsonData.value("host", ""));
-
-								fwRefContainer<net::ReverseTcpServer> rts = new net::ReverseTcpServer();
-								rts->Listen("users.cfx.re:30130", jsonData.value("rpToken", ""));
-
-								tlm->AddExternalServer(rts);
-
-								instance->GetComponent<fx::ResourceManager>()
-									->GetComponent<fx::ResourceEventManagerComponent>()
-									->QueueEvent2(
-										"_cfx_internal:nucleusConnected",
-										{},
-										fmt::sprintf("https://%s/", jsonData.value("host", ""))
-									);
-
-								StructuredTrace({ "type", "nucleus_connected" }, { "url", fmt::sprintf("https://%s/", jsonData.value("host", "")) });
-
-								static auto webVar = instance->AddVariable<std::string>("web_baseUrl", ConVar_None, jsonData.value("host", ""));
-
-								setNucleusSuccess = true;
-							}
-
-							DownloadAndProcessNotices(instance, httpClient);
-						});
+						// Bypassed Nucleus
+						setNucleusSuccess = true;
+						
+						trace("^1        fff                          \n^1  cccc ff   xx  xx     rr rr    eee  \n^1cc     ffff   xx       rrr  r ee   e \n^1cc     ff     xx   ... rr     eeeee  \n^1 ccccc ff   xx  xx ... rr      eeeee \n                                     ^7\n");
+						trace("^2[F8Server] Server initialized without Nucleus (Standalone Mode).\n");
+						
+						static auto webVar = instance->AddVariable<std::string>("web_baseUrl", ConVar_None, "localhost");
+						
+						// Fake nucleus connected event
+						instance->GetComponent<fx::ResourceManager>()
+							->GetComponent<fx::ResourceEventManagerComponent>()
+							->QueueEvent2(
+								"_cfx_internal:nucleusConnected",
+								{},
+								"http://localhost/"
+							);
 					}
 
 					setNucleus = true;

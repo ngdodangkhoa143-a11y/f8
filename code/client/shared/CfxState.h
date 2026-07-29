@@ -155,6 +155,6 @@ struct CfxState
 
 	inline static auto Get()
 	{
-		return HostSharedData<CfxState>{ "CfxInitState" };
+		return HostSharedData<CfxState>{ "F8InitState" };
 	}
 };

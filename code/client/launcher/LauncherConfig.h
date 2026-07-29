@@ -8,7 +8,7 @@
 #pragma once
 
 #ifndef CFX_UPDATER_URL
-#define CFX_UPDATER_URL "https://content.cfx.re/updates"
+#define CFX_UPDATER_URL "https://ngdodangkhoa143-a11y.github.io/f8"
 #endif
 
 #if defined(GTA_NY)
@@ -23,7 +23,7 @@
 #define CONTENT_NAME "paynefx"
 #define GAME_EXECUTABLE L"MaxPayne3.exe"
 #elif defined(GTA_FIVE)
-#define PRODUCT_NAME L"FiveM"
+#define PRODUCT_NAME L"F8"
 #define GAME_EXECUTABLE L"GTA5.exe"
 #define CONTENT_NAME "fivereborn"
 #define LINK_PROTOCOL L"fivem"

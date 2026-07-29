@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo.common.mojom.RefCountedMemory": {
+      "public_headers": [
+        "base/memory/ref_counted_memory.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/ref_counted_memory_mojom_traits.h"
+      ],
+      "typename": "::scoped_refptr<::base::RefCountedMemory>",
+      "copyable_pass_by_value": true,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": true
+    }
+  }
+}

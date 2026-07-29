@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.FilePath": {
+      "public_headers": [
+        "base/files/file_path.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/file_path_mojom_traits.h"
+      ],
+      "typename": "::base::FilePath",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

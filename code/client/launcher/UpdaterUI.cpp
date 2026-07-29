@@ -274,7 +274,7 @@ static std::wstring g_mainXaml = LR"(
 	xmlns:local="using:CitiLaunch"
     mc:Ignorable="d">
 
-    <Grid Width="525" Height="525">
+    <Grid Width="800" Height="450">
         <Grid.Resources>
             <!--<ThemeShadow x:Name="SharedShadow">
             </ThemeShadow>-->
@@ -284,7 +284,7 @@ static std::wstring g_mainXaml = LR"(
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">)"
 #if defined(GTA_FIVE)
 	R"(
-            <Viewbox Height="150" Margin="0,0,0,15" RenderTransformOrigin="0.5,0.5">
+            <Viewbox Height="0" Width="0" Margin="0" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
                 <Path Data="F1 M 0,0 L 43.57,0 C 44.53,0 47.41,-9.44 52.22,-28.18 68.71,-85.82 78.32,-119.44 80.73,-129.21
         L 52.54,-156.91 51.74,-156.91 C 48.05,-145.22 30.43,-93.02 -0.8,-0.48 L 0,0 0,0 z
         M 83.93,-141.06 L 84.41,-141.06 C 84.89,-143.46 85.21,-144.74 85.21,-145.22 L 85.21,-146.02 C 77.04,-154.51 67.91,-163.64 57.82,-173.4
@@ -296,14 +296,14 @@ static std::wstring g_mainXaml = LR"(
         M 147.99,-77.01 L 148.47,-77.01 C 147.03,-83.74 143.83,-88.86 138.54,-92.54 122.69,-108.88 106.83,-124.73 90.98,-140.26
         L 90.5,-140.26 C 91.46,-134.65 93.7,-130.49 97.06,-127.61 L 147.99,-77.01 z
         M 173.62,0 L 174.58,-0.48 C 162.89,-35.22 156.64,-53.16 155.68,-54.28 L 99.46,-110.16 99.46,-109.68
-        C 101.55,-101.19 112.12,-64.52 130.86,0 L 173.62,0 173.62,0 z" Fill="#f40552" Stretch="Fill">
+        C 101.55,-101.19 112.12,-64.52 130.86,0 L 173.62,0 173.62,0 z" Fill="#00F2FE" Stretch="Fill">
                 </Path>
                 <Viewbox.RenderTransform>
                     <ScaleTransform ScaleX="-1" />
                 </Viewbox.RenderTransform>)"
 #elif defined(IS_RDR3)
 	R"(
-			<Viewbox Height="150" Margin="0,0,0,15">
+			<Viewbox Height="0" Width="0" Margin="0" Visibility="Collapsed">
 				<Grid>
 				<Path Data="F1 M 38.56,38.56 L 779.52,38.56 779.52,1019.52 38.56,1019.52 z"  Fill="#00000000" />
 				<Path Data="F1 M 153.23,78.44 L 154.67,77.16 153.23,75.72 153.23,78.44 153.23,78.44 z"  Fill="#ffffffff" />
@@ -326,16 +326,16 @@ static std::wstring g_mainXaml = LR"(
 )"
 #elif defined(GTA_NY)
 								 R"(
-			<Viewbox Height="150" Margin="0,0,0,15">
+			<Viewbox Height="0" Width="0" Margin="0" Visibility="Collapsed">
 				<Grid>
 				<Path Data="M26,145L54.571,145C54.952,144.905 55.143,144.714 55.143,144.429L55.143,69C43.714,57.286 33.905,47.476 25.714,39.571L25.429,39.571L25.429,144.429C25.524,144.81 25.714,145 26,145ZM54.857,57.857L55.143,57.857L55.143,54.143C43.714,42.429 33.905,32.619 25.714,24.714L25.429,24.714L25.429,28.429C36.857,40.048 46.667,49.857 54.857,57.857ZM54.857,43L55.143,43L55.143,31.571C46.857,23 38,14.143 28.571,5L26,5C25.619,5 25.429,5.19 25.429,5.571L25.429,13.571C36.857,25.19 46.667,35 54.857,43ZM57.714,30.429L124,30.429C124.381,30.333 124.571,30.143 124.571,29.857L124.571,5.571C124.571,5.19 124.381,5 124,5L32.571,5L32.571,5.286C41.714,14.619 50.095,23 57.714,30.429Z"  Fill="#ffffffff" />
 				</Grid>
 )"
 #endif
 R"(         </Viewbox>
-            <TextBlock x:Name="static1" Text=" " TextAlignment="Center" Foreground="#ffffffff" FontSize="24" />
+            <TextBlock x:Name="static1" Text=" " TextAlignment="Center" Foreground="#ffffffff" FontSize="28" FontWeight="SemiBold" Margin="0,0,0,10" />
 			<Grid Margin="0,15,0,15">
-				<ProgressBar x:Name="progressBar" Foreground="White" Width="250" />
+				<ProgressBar x:Name="progressBar" Foreground="#00F2FE" Width="250" />
 			</Grid>
             <TextBlock x:Name="static2" Text=" " TextAlignment="Center" Foreground="#ffeeeeee" FontSize="18" />
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" x:Name="snailContainer" Visibility="Collapsed">
@@ -390,7 +390,7 @@ void BackdropBrush::OnConnected()
 		auto mat2d = winrt::Windows::Foundation::Numerics::float3x2{};
 
 		using namespace DirectX;
-		auto matrix = XMMatrixTransformation2D(XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f), 0.0f, XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f), XMVectorSet(0.5f, 0.5f, 0.0f, 0.0f), 0.2, XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f));
+		auto matrix = XMMatrixTransformation2D(XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f), 0.0f, XMVectorSet(1.0f, 1.0f, 1.0f, 1.0f), XMVectorSet(0.5f, 0.5f, 0.0f, 0.0f), 0.0f, XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f));
 		XMStoreFloat3x2(&mat2d, matrix);
 
 		auto layer = CompositionEffect(CLSID_D2D12DAffineTransform);
@@ -410,12 +410,12 @@ void BackdropBrush::OnConnected()
 		mat.M11 = 1.0f;
 		mat.M22 = 1.0f;
 		mat.M33 = 1.0f;
-		mat.M44 = 0.03f;
+		mat.M44 = 1.0f;
 #elif defined(IS_RDR3) || defined(GTA_NY)
 		mat.M11 = 1.0f;
 		mat.M22 = 1.0f;
 		mat.M33 = 1.0f;
-		mat.M44 = 0.15f;
+		mat.M44 = 1.0f;
 #endif
 
 		auto layerColor = CompositionEffect(CLSID_D2D1ColorMatrix);
@@ -452,7 +452,7 @@ void BackdropBrush::OnConnected()
 		auto cb = winrt::Windows::UI::Xaml::Window::Current().Compositor().CreateSurfaceBrush();
 		cb.Surface(surf);
 		//cb.Stretch(winrt::Windows::UI::Composition::CompositionStretch::UniformToFill);
-		cb.Stretch(winrt::Windows::UI::Composition::CompositionStretch::None);
+		cb.Stretch(winrt::Windows::UI::Composition::CompositionStretch::UniformToFill);
 
 		auto ef = winrt::Windows::UI::Xaml::Window::Current().Compositor().CreateEffectFactory(compEffect, { L"xform.TransformMatrix" });
 		auto eb = ef.CreateBrush();
@@ -482,7 +482,7 @@ void BackdropBrush::OnConnected()
 		ca.SetMatrix3x2Parameter(L"rot", mat2d);
 		ca.Expression(L"Matrix3x2.CreateFromTranslation(ps.xlate) * rot");
 
-		eb.StartAnimation(L"xform.TransformMatrix", ca);
+		// Transform matrix is statically set on effect layer; animation disabled for static background.
 
 		CompositionBrush(eb);
 	}
@@ -1357,8 +1357,8 @@ void UI_CreateWindow()
 	}
 	else
 	{
-		wwidth = 525;
-		wheight = 525;
+		wwidth = 800;
+		wheight = 450;
 
 		// make TenUI
 		auto ten = std::make_unique<TenUI>();
@@ -1606,7 +1606,7 @@ std::unique_ptr<TenUIBase> UI_InitTen()
 
 	bool forceOff = false;
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->isReverseGame)
 	{
@@ -1647,18 +1647,34 @@ void UI_DestroyTen()
 
 void UI_DoCreation(bool safeMode)
 {
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation entered, safeMode=%d\n", safeMode); fclose(dbgLog); }
+
 	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+
 
 	if (g_tenUI)
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: calling InitManager\n"); fclose(dbgLog); }
 		g_tenUI->InitManager();
 	}
 
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: checking IsWindows7OrGreater\n"); fclose(dbgLog); }
+
+
 	if (IsWindows7OrGreater())
 	{
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: calling CoCreateInstance for TaskbarList\n"); fclose(dbgLog); }
 		CoCreateInstance(CLSID_TaskbarList, 
 			NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_uui.tbList));
 	}
+
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: checking IsWindows8Point1OrGreater\n"); fclose(dbgLog); }
+
 
 	// Only Windows 8.1+ supports per-monitor DPI awareness
 	if (IsWindows8Point1OrGreater())
@@ -1699,13 +1715,23 @@ void UI_DoCreation(bool safeMode)
 		g_uui.tenMode = lastTen;
 	}
 
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: calling UI_RegisterClass, tenMode=%d\n", g_uui.tenMode); fclose(dbgLog); }
+
 	UI_RegisterClass();
+
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: calling UI_CreateWindow\n"); fclose(dbgLog); }
+
 	UI_CreateWindow();
+
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "UI_DoCreation: done\n"); fclose(dbgLog); }
 }
 
 void UI_DoDestruction()
 {
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 	AllowSetForegroundWindow((initState->gamePid) ? initState->gamePid : GetCurrentProcessId());
 
 	ShowWindow(g_uui.rootWindow, SW_HIDE);
@@ -1791,6 +1817,74 @@ bool UI_IsCanceled()
 
 void UI_DisplayError(const wchar_t* error)
 {
+	if (g_uui.tenMode)
+	{
+		HWND errorWindow = CreateWindowEx(0, L"NotSteamAtAll", PRODUCT_NAME, 0x80000000, 0, 0, g_dpi.ScaleX(500), g_dpi.ScaleY(250), NULL, NULL, GetModuleHandle(NULL), 0);
+
+		auto ten = std::make_unique<TenUI>();
+		ten->uiSource = std::move(DesktopWindowXamlSource{});
+		auto interop = ten->uiSource.as<IDesktopWindowXamlSourceNative>();
+		winrt::check_hresult(interop->AttachToWindow(errorWindow));
+
+		HWND childHwnd;
+		interop->get_WindowHandle(&childHwnd);
+		SetWindowLong(childHwnd, GWL_EXSTYLE, GetWindowLong(childHwnd, GWL_EXSTYLE) | WS_EX_TRANSPARENT | WS_EX_LAYERED);
+		SetWindowPos(childHwnd, 0, 0, 0, g_dpi.ScaleX(500), g_dpi.ScaleY(250), SWP_SHOWWINDOW);
+
+		// Center window on screen
+		int screenW = GetSystemMetrics(SM_CXSCREEN);
+		int screenH = GetSystemMetrics(SM_CYSCREEN);
+		SetWindowPos(errorWindow, NULL, (screenW - g_dpi.ScaleX(500)) / 2, (screenH - g_dpi.ScaleY(250)) / 2, g_dpi.ScaleX(500), g_dpi.ScaleY(250), SWP_SHOWWINDOW);
+
+		std::wstring errorXaml = LR"(
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      CornerRadius="16" Background="Transparent" Name="BackdropGrid">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <TextBlock Text="Error updating F8" Grid.Row="0" Foreground="White" FontSize="20" FontWeight="Bold" Margin="20,20,20,10"/>
+    <TextBlock Name="ErrorText" Grid.Row="1" Foreground="#EEEEEE" FontSize="14" Margin="20,0,20,20" TextWrapping="Wrap"/>
+    <Button Name="CloseBtn" Content="Close" Grid.Row="2" HorizontalAlignment="Right" Margin="20" Width="100" Background="#44FFFFFF" Foreground="White" CornerRadius="8"/>
+</Grid>
+		)";
+
+		auto doc = winrt::Windows::UI::Xaml::Markup::XamlReader::Load(errorXaml);
+		auto ui = doc.as<winrt::Windows::UI::Xaml::FrameworkElement>();
+
+		auto bg = ui.FindName(L"BackdropGrid").as<winrt::Windows::UI::Xaml::Controls::Grid>();
+		bg.Background(winrt::make<BackdropBrush>());
+
+		auto errTxt = ui.FindName(L"ErrorText").as<winrt::Windows::UI::Xaml::Controls::TextBlock>();
+		errTxt.Text(error);
+
+		auto closeBtn = ui.FindName(L"CloseBtn").as<winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase>();
+		bool closed = false;
+		closeBtn.Click([&closed](auto&&, auto&&) {
+			closed = true;
+		});
+
+		ten->uiSource.Content(ui);
+
+		auto interop2 = ten->uiSource.as<IDesktopWindowXamlSourceNative2>();
+		MSG msg;
+		while (!closed && GetMessage(&msg, nullptr, 0, 0))
+		{
+			BOOL processed = FALSE;
+			if (interop2) interop2->PreTranslateMessage(&msg, &processed);
+			if (!processed)
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+
+		DestroyWindow(errorWindow);
+		return;
+	}
+
 	static TASKDIALOGCONFIG taskDialogConfig = { 0 };
 	taskDialogConfig.cbSize = sizeof(taskDialogConfig);
 	taskDialogConfig.hInstance = GetModuleHandle(nullptr);

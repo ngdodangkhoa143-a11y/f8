@@ -10,9 +10,9 @@
 #endif
 
 #ifndef CNL_ENDPOINT
-#define CNL_ENDPOINT "https://lambda.fivem.net/"
+#define CNL_ENDPOINT "http://api.f8network.local/lambda/"
 #endif
 
 #ifndef CNL_HB_ENDPOINT
-#define CNL_HB_ENDPOINT "https://cnl-hb-live.fivem.net/"
+#define CNL_HB_ENDPOINT "http://api.f8network.local/cnl-hb/"
 #endif

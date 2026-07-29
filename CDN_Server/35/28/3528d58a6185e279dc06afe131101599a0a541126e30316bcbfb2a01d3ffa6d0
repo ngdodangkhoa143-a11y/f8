@@ -1,0 +1,49 @@
+{
+  "c++": {
+    "mojo_base.mojom.Value": {
+      "public_headers": [
+        "base/values.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/values_mojom_traits.h"
+      ],
+      "typename": "::base::Value",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.DictionaryValue": {
+      "public_headers": [
+        "base/values.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/values_mojom_traits.h"
+      ],
+      "typename": "::base::Value",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.ListValue": {
+      "public_headers": [
+        "base/values.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/values_mojom_traits.h"
+      ],
+      "typename": "::base::Value",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "c++": {
+    "mojo_base.mojom.PlatformSharedMemoryHandle": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::subtle::PlatformSharedMemoryRegion::ScopedPlatformHandle",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.PlatformSharedMemoryRegion": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::subtle::PlatformSharedMemoryRegion",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.PlatformSharedMemoryRegion.Mode": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::subtle::PlatformSharedMemoryRegion::Mode",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.ReadOnlySharedMemoryRegion": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::ReadOnlySharedMemoryRegion",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": true
+    },
+    "mojo_base.mojom.UnsafeSharedMemoryRegion": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::UnsafeSharedMemoryRegion",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": true
+    },
+    "mojo_base.mojom.WritableSharedMemoryRegion": {
+      "public_headers": [
+        "base/memory/platform_shared_memory_region.h",
+        "base/memory/read_only_shared_memory_region.h",
+        "base/memory/unsafe_shared_memory_region.h",
+        "base/memory/writable_shared_memory_region.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/shared_memory_mojom_traits.h"
+      ],
+      "typename": "::base::WritableSharedMemoryRegion",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": true
+    }
+  }
+}

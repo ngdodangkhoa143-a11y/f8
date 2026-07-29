@@ -257,7 +257,7 @@ void GameImpl::RunMod(const std::string& modId, const std::string& args)
 
 	if (result)
 	{
-		static HostSharedData<CfxState> hostData("CfxInitState");
+		static HostSharedData<CfxState> hostData("F8InitState");
 		hostData->gamePid = processInfo.dwProcessId;
 
 		std::thread([processInfo]()

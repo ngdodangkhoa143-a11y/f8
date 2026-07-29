@@ -956,7 +956,7 @@ void Component_RunPreInit()
 		});
 	}
 
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 
 	if (!hostData->IsMasterProcess())
 	{

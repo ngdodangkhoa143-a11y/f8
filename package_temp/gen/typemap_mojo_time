@@ -1,0 +1,49 @@
+{
+  "c++": {
+    "mojo_base.mojom.Time": {
+      "public_headers": [
+        "base/time/time.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/time_mojom_traits.h"
+      ],
+      "typename": "::base::Time",
+      "copyable_pass_by_value": true,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.TimeDelta": {
+      "public_headers": [
+        "base/time/time.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/time_mojom_traits.h"
+      ],
+      "typename": "::base::TimeDelta",
+      "copyable_pass_by_value": true,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    },
+    "mojo_base.mojom.TimeTicks": {
+      "public_headers": [
+        "base/time/time.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/time_mojom_traits.h"
+      ],
+      "typename": "::base::TimeTicks",
+      "copyable_pass_by_value": true,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

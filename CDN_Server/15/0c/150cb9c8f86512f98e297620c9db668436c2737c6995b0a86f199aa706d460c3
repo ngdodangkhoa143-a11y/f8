@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.GenericPendingReceiver": {
+      "public_headers": [
+        "mojo/public/cpp/bindings/generic_pending_receiver.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/generic_pending_receiver_mojom_traits.h"
+      ],
+      "typename": "::mojo::GenericPendingReceiver",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": true
+    }
+  }
+}

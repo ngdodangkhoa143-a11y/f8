@@ -36,18 +36,35 @@ static HookFunction hookFunction([] ()
 		((void (*)(const wchar_t*))GetProcAddress(rosDll, "runEarly"))(MakeRelativeCitPath(L"").c_str());
 	}
 
+	// F8 Standalone: Signal the event BEFORE run() so GetScSdkStub() doesn't block.
+	// run() still needs to execute to set up the socialclub.dll session data,
+	// but we run it in a detached thread so it doesn't hold up the init chain.
+	SetEvent(g_rosClearedEvent);
+
+	try
+	{
+		// Bypass DLC checks (CExtraContentManager::IsDLCPresent)
+		// Fixes bakerloo-monkey-five when drawing DLC weapons in build 3258
+		static struct
+		{
+			static bool HasEntitlement(void* manager, uint32_t hash)
+			{
+				return true;
+			}
+		} bypass;
+
+		hook::jump(hook::get_pattern("48 83 EC 20 48 8B 01 48 8D 54 24 30"), bypass.HasEntitlement);
+	}
+	catch (...)
+	{
+		// Pattern not found, ignore
+	}
+
 	std::thread([=]()
 	{
 		if (rosDll != nullptr)
 		{
 			((void(*)(const wchar_t*))GetProcAddress(rosDll, "run"))(MakeRelativeCitPath(L"").c_str());
-		}
-		
-		SetEvent(g_rosClearedEvent);
-
-		if (GetModuleHandle(L"clr.dll") != nullptr)
-		{
-			FatalError(__FUNCTION__ " can not execute while the Common Language Runtime is loaded. Please remove any .NET-based plugins/CitizenFX components from your game installation, and try again.");
 		}
 	}).detach();
 });

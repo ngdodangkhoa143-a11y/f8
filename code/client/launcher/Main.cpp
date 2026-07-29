@@ -183,7 +183,7 @@ int RealMain()
 			HANDLE hProcess = NULL;
 
 			{
-				HostSharedData<CfxState> initStateOld("CfxInitState");
+				HostSharedData<CfxState> initStateOld("F8InitState");
 
 				hProcess = OpenProcess(SYNCHRONIZE, FALSE, initStateOld->initialGamePid);
 				initStateOld->initialGamePid = 0;
@@ -266,7 +266,7 @@ int RealMain()
 
 	// initialize our initState instance
 	// this needs to be before *any* MakeRelativeCitPath use in main process
-	HostSharedData<CfxState> initState("CfxInitState");
+	HostSharedData<CfxState> initState("F8InitState");
 
 	// set link protocol, e.g. fivem or redm
 	initState->SetLinkProtocol(LINK_PROTOCOL);
@@ -809,7 +809,7 @@ int RealMain()
 	{
 		std::thread([minModeManifest]() mutable
 		{
-			static HostSharedData<CfxState> initState("CfxInitState");
+			static HostSharedData<CfxState> initState("F8InitState");
 			static HostSharedData<UpdaterUIState> uuiState("CfxUUIState");
 
 #if !defined(_DEBUG) && defined(LAUNCHER_PERSONALITY_MAIN)

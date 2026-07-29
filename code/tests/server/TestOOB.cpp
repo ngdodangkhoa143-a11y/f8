@@ -1,4 +1,4 @@
-﻿#include <StdInc.h>
+#include <StdInc.h>
 
 #include <catch_amalgamated.hpp>
 
@@ -150,7 +150,7 @@ TEST_CASE("Out of band protocol test")
 		{
 			std::string randomData = fx::TestUtils::asciiRandom(fx::TestUtils::u64Random(100) + 1);
 			std::string testMsg = std::string("test") + "\n" + randomData;
-			auto oobMsg = "\xFF\xFF\xFF\xFF" + std::string(testMsg);
+			auto oobMsg = "\xFE\xFE\xFE\xFE" + std::string(testMsg);
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered")
@@ -169,7 +169,7 @@ TEST_CASE("Out of band protocol test")
 		{
 			std::string randomData = fx::TestUtils::asciiRandom(fx::TestUtils::u64Random(100) + 1);
 			std::string testMsg = "\n" + randomData;
-			auto oobMsg = "\xFF\xFF\xFF\xFF" + std::string(testMsg);
+			auto oobMsg = "\xFE\xFE\xFE\xFE" + std::string(testMsg);
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered, because the message header was -1")
@@ -184,7 +184,7 @@ TEST_CASE("Out of band protocol test")
 		WHEN("Sending without data")
 		{
 			std::string testMsg = std::string("test") + "\n";
-			auto oobMsg = "\xFF\xFF\xFF\xFF" + std::string(testMsg);
+			auto oobMsg = "\xFE\xFE\xFE\xFE" + std::string(testMsg);
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered, because the message header was -1")
@@ -201,7 +201,7 @@ TEST_CASE("Out of band protocol test")
 		WHEN("Sending without seperator")
 		{
 			std::string testMsg = "test";
-			auto oobMsg = "\xFF\xFF\xFF\xFF" + std::string(testMsg);
+			auto oobMsg = "\xFE\xFE\xFE\xFE" + std::string(testMsg);
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered, because the message header was -1")
@@ -220,7 +220,7 @@ TEST_CASE("Out of band protocol test")
 		{
 			std::string data = fx::TestUtils::asciiRandom(1);
 			std::string testMsg = std::string("test") + "\n" + data;
-			auto oobMsg = "\xFF\xFF\xFF\xFF" + std::string(testMsg);
+			auto oobMsg = "\xFE\xFE\xFE\xFE" + std::string(testMsg);
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered, because the message header was -1")
@@ -237,7 +237,7 @@ TEST_CASE("Out of band protocol test")
 		WHEN("Sending without key and data")
 		{
 			std::string data = fx::TestUtils::asciiRandom(1);
-			auto oobMsg = "\xFF\xFF\xFF\xFF";
+			auto oobMsg = "\xFE\xFE\xFE\xFE";
 			auto local = net::PeerAddress::FromString("127.0.0.1").get();
 			REQUIRE(testOutOfBand.SendOutOfBand(oobMsg, local) == true);
 			THEN("The intercept callback won't be triggered, because the message header was -1")

@@ -483,7 +483,7 @@ namespace fx
 		{
 			auto addr = GetENetAddress(to);
 
-			auto oobMsg = (prefix ? "\xFF\xFF\xFF\xFF" : "") + std::string(oob);
+			auto oobMsg = (prefix ? "\xFE\xFE\xFE\xFE" : "") + std::string(oob);
 
 			ENetBuffer buffer;
 			buffer.data = (uint8_t*)oobMsg.c_str();

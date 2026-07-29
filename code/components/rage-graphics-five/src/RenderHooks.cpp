@@ -519,7 +519,7 @@ static HANDLE g_gameWindowEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 
 void DLL_EXPORT UiDone()
 {
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 	WaitForSingleObject(g_gameWindowEvent, INFINITE);
 
 	auto uiExitEvent = CreateEventW(NULL, TRUE, FALSE, va(L"CitizenFX_PreUIExit%s", IsCL2() ? L"CL2" : L""));
@@ -620,7 +620,7 @@ static HRESULT CreateD3D11DeviceWrapOrig(_In_opt_ IDXGIAdapter* pAdapter, D3D_DR
 	WRL::ComPtr<IDXGIDevice> dxgiDevice;
 	WRL::ComPtr<IDXGIAdapter> dxgiAdapter;
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (SUCCEEDED(hr))
 	{
@@ -1745,10 +1745,10 @@ static decltype(&CreateWindowExW) g_origCreateWindowExW;
 
 static HWND WINAPI HookCreateWindowExW(_In_ DWORD dwExStyle, _In_opt_ LPCWSTR lpClassName, _In_opt_ LPCWSTR lpWindowName, _In_ DWORD dwStyle, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HMENU hMenu, _In_opt_ HINSTANCE hInstance, _In_opt_ LPVOID lpParam)
 {
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 	HWND w;
 
-	const auto wndName = L"FiveM® by Cfx.re";
+	const auto wndName = L"F8 by Cfx.re";
 
 	if (initState->isReverseGame)
 	{
@@ -2075,7 +2075,7 @@ static HookFunction hookFunction([] ()
 
 	g_origCreateWindowExW = hook::iat("user32.dll", HookCreateWindowExW, "CreateWindowExW");
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->isReverseGame)
 	{

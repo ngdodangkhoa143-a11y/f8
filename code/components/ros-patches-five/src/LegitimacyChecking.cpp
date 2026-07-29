@@ -891,9 +891,13 @@ bool VerifyRetailOwnership()
 
 static ConVar<std::string>* tokenVar;
 
+extern void SetEntitlementSource(const std::string& entitlementSource);
+
 bool LegitimateCopy()
 {
-    return LoadOwnershipTicket() || (VerifySteamOwnership() && SaveOwnershipTicket(ros::GetEntitlementSource())) || (VerifyRetailOwnership() && SaveOwnershipTicket(ros::GetEntitlementSource()));
+	// Populate g_entitlementSource so the engine thinks it has a ticket
+	SetEntitlementSource("F8-DUMMY-TICKET");
+    return true; // F8 Standalone bypass
 }
 
 void VerifyOwnership(int parentPid)

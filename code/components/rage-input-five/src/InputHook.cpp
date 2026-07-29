@@ -826,7 +826,7 @@ static HookFunction hookFunction([]()
 
 	// NOTE: this specific flow should *only* be used if RG!
 	// there's a call above in OnGameFrame which handles all other ancillary responsibilities
-	static HostSharedData<CfxState> initState("CfxInitState");
+	static HostSharedData<CfxState> initState("F8InitState");
 
 	if (initState->isReverseGame)
 	{

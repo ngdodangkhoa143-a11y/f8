@@ -24,7 +24,7 @@ fwPlatformString GetAbsoluteCitPath()
 		fwPlatformString citizenPath;
 
 #ifndef IS_FXSERVER
-		HostSharedData<CfxState> initState("CfxInitState");
+		HostSharedData<CfxState> initState("F8InitState");
 
 		citizenPath = initState->GetInitPath();
 
@@ -36,7 +36,7 @@ fwPlatformString GetAbsoluteCitPath()
 #ifdef IS_RDR3
 				if (!CreateDirectory((citizenPath + L"RedM.app").c_str(), nullptr))
 #else
-				if (!CreateDirectory((citizenPath + L"FiveM.app").c_str(), nullptr))
+				if (!CreateDirectory((citizenPath + L"F8.app").c_str(), nullptr))
 #endif
 				{
 					DWORD error = GetLastError();
@@ -56,7 +56,7 @@ fwPlatformString GetAbsoluteCitPath()
 #ifdef IS_RDR3
 								   L"RedM.app";
 #else
-								   L"FiveM.app";
+								   L"F8.app";
 #endif
 
 			if (GetFileAttributes(subPath.c_str()) != INVALID_FILE_ATTRIBUTES && (GetFileAttributes(subPath.c_str()) & FILE_ATTRIBUTE_DIRECTORY) != 0)
@@ -98,7 +98,7 @@ fwPlatformString GetAbsoluteCitPath()
 	if (InterlockedCompareExchange(&ranPastInstaller, 0, 0) == 0)
 	{
 		// grab the ranPastInstaller state from here
-		HostSharedData<CfxState> initState("CfxInitState");
+		HostSharedData<CfxState> initState("F8InitState");
 
 		if (initState->ranPastInstaller)
 		{
@@ -118,7 +118,7 @@ fwPlatformString GetAbsoluteCitPath()
 fwPlatformString GetAbsoluteGamePath()
 {
 #ifndef IS_FXSERVER
-	HostSharedData<CfxState> initState("CfxInitState");
+	HostSharedData<CfxState> initState("F8InitState");
 
 	if (!initState->gameDirectory[0])
 	{

@@ -170,27 +170,26 @@ void RunRlInitServicing()
 
 void WaitForRlInit()
 {
-	assert(g_isScWaitingForInit);
+	if (!g_isScWaitingForInit)
+	{
+		return;
+	}
 
-	auto waitForRlInitStart = GetTickCount64();
+	// F8 Standalone: g_rosClearedEvent is signaled immediately in EntitlementFixes.cpp
+	// so GetScSdkStub() won't block. Give ros.dll::run() up to 10 seconds to set up
+	// the SC session, pumping RunRlInitServicing in the meantime.
+	auto waitStart = GetTickCount64();
 
 	while (g_isScWaitingForInit())
 	{
-		// if stuck waiting for over a minute, likely this errored out
-		if ((GetTickCount64() - waitForRlInitStart) > 60000)
+		if ((GetTickCount64() - waitStart) > 10000)
 		{
-			{
-				PWSTR appdataPath = nullptr;
-				SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, nullptr, &appdataPath);
-
-				_wunlink(va(L"%s\\CitizenFX\\ros_id%s.dat", appdataPath, IsCL2() ? L"CL2" : L""));
-			}
-
-			FatalError("Took too long in WaitForRlInit\nWaiting for R* SC SDK initialization took too long. Please restart your game and try again.\n\nIf this issue reoccurs, there might be a problem with cached entitlement tickets.");
+			// Timed out but don't crash - just proceed, SC init will continue via OnLookAliveFrame
+			trace("WaitForRlInit: F8 Standalone - proceeding after 10s timeout\n");
+			break;
 		}
 
 		RunRlInitServicing();
-
 		Sleep(50);
 	}
 }
@@ -202,6 +201,14 @@ void SetScInitWaitCallback(bool (*cb)())
 
 static InitFunction initFunction([] ()
 {
+	rage::scrEngine::OnScriptInit.Connect([]()
+	{
+		rage::scrEngine::RegisterNativeHandler(0x659CF2EF7F550C4F, [](rage::scrNativeCallContext* context)
+		{
+			context->SetResult<int>(0, 0); // false
+		});
+	});
+
 	OnKillNetworkDone.Connect([]()
 	{
 		gamerInfoMenu__shutdown(rage::INIT_SESSION);

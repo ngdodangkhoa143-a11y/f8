@@ -20,7 +20,7 @@ void SDKGameProcessManager::StartGame()
 
 	SetGameProcessState(SDKGameProcessManager::GameProcessState::GP_STARTING);
 
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 	hostData->isReverseGame = true;
 
 	static HostSharedData<ReverseGameData> rgd("CfxReverseGameData");

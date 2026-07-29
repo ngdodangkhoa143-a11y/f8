@@ -11,6 +11,7 @@
 #include <skyr/url.hpp>
 
 #include <HttpClient.h>
+#include <ICoreGameInit.h>
 
 using json = nlohmann::json;
 
@@ -80,6 +81,7 @@ static HookFunction initFunction([]()
 				if (data["evt"] == "READY" && data.find("data") != data.end() && data["data"].find("user") != data["data"].end())
 				{
 					userId = data["data"]["user"]["id"].get<std::string>();
+					Instance<ICoreGameInit>::Get()->SetData("discord_id", userId);
 
 					if (userId == "0")
 					{

@@ -640,9 +640,10 @@ static InitFunction initFunction([]()
 
 				if (ticketIt == postMap.end())
 				{
-					sendError("No authentication ticket was specified.");
-					return;
+					// skip ticket parsing
 				}
+				else
+				{
 
 				auto requestedPublicKey = GetPublicKey();
 				
@@ -695,7 +696,8 @@ static InitFunction initFunction([]()
 					sendError(fmt::sprintf("Parsing error while verifying ticket. %s", e.what()));
 					return;
 				}
-			}
+			} // end if (!lanVar->GetValue())
+			} // end else (ticketIt != postMap.end())
 
 			std::string token = boost::uuids::to_string(boost::uuids::basic_random_generator<boost::random_device>()());
 
@@ -781,6 +783,19 @@ static InitFunction initFunction([]()
 					hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6], hash[7], hash[8], hash[9],
 					hash[10], hash[11], hash[12], hash[13], hash[14], hash[15], hash[16], hash[17], hash[18], hash[19]));
 			}
+			else
+			{
+				// No valid ticket provided (or bypassed), generate fake identifiers so they can still play
+				Botan::SHA_160 hashFunction;
+				auto result = hashFunction.process(reinterpret_cast<const uint8_t*>(guid.data()), guid.size());
+				std::string paddedGuid = fmt::sprintf("%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+					result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9],
+					result[10], result[11], result[12], result[13], result[14], result[15], result[16], result[17], result[18], result[19]);
+				client->AddIdentifier("license:" + paddedGuid);
+				size_t fakeDiscord = std::hash<std::string>{}(guid);
+				client->AddIdentifier("discord:" + std::to_string(fakeDiscord));
+				client->SetData("entitlementHash", std::string("29e2dcfbb16f63bb0254df7585a15bb6fb5e927d"));
+			}
 
 			bool gameNameMatch = false;
 
@@ -815,8 +830,10 @@ static InitFunction initFunction([]()
 
 			if (!gameNameMatch)
 			{
-				sendError("CitizenFX ticket authorization failed. (3)");
-				return;
+				// F8: Bypass gameNameMatch
+				// sendError("CitizenFX ticket authorization failed. (3)");
+				// return;
+				gameNameMatch = true;
 			}
 
 			client->Touch();

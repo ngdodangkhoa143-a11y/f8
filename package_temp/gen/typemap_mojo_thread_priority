@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.ThreadPriority": {
+      "public_headers": [
+        "base/threading/platform_thread.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/thread_priority_mojom_traits.h"
+      ],
+      "typename": "::base::ThreadPriority",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

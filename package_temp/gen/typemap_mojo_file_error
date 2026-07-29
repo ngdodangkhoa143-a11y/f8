@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "mojo_base.mojom.FileError": {
+      "public_headers": [
+        "base/files/file.h"
+      ],
+      "traits_headers": [
+        "mojo/public/cpp/base/file_error_mojom_traits.h"
+      ],
+      "typename": "::base::File::Error",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": false,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

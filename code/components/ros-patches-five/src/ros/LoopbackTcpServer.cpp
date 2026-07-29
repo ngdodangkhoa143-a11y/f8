@@ -1696,7 +1696,7 @@ void RunLauncher(const wchar_t* toolName, bool instantWait)
 			launcherState->pid = pi.dwProcessId;
 		}
 
-		DWORD timeout = INFINITE;
+		DWORD timeout = 15000; // Wait 15 seconds instead of infinite
 
 		if (wcsstr(toolName, L"ros:epic") != nullptr || wcsstr(toolName, L"ros:steam") != nullptr)
 		{
@@ -1818,7 +1818,20 @@ static HANDLE __stdcall CreateFileAStub(
 
 		trace("^2Launcher gave all-clear - waiting for pipe.\n");
 
-		WaitNamedPipeA(lpFileName, NMPWAIT_WAIT_FOREVER);
+		bool pipeFound = false;
+		for (int i = 0; i < 45; i++)
+		{
+			if (WaitNamedPipeA(lpFileName, 1000))
+			{
+				pipeFound = true;
+				break;
+			}
+		}
+
+		if (!pipeFound)
+		{
+			ROSFailure(nullptr);
+		}
 
 		trace("^2Launcher is fine, continuing to initialize!\n");
 	}

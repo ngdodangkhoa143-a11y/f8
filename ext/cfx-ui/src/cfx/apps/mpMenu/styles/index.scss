@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  --backdrop-image: url(assets/images/bg2.jpg);
+  --backdrop-image: url(assets/images/backgroundf8.png);
 
   background-image: var(--backdrop-image);
   background-size: cover;
@@ -44,10 +44,12 @@ body {
   width: 100vw;
   height: 100vh;
 
-  background: ui.color-token('backdrop');
+  /* Removed dark overlay - let background show through */
+  background: transparent;
 }
 .cfxui-blurred-backdrop #backdrop-outlet {
-  backdrop-filter: blur(20px) contrast(50%);
+  /* Removed heavy blur/contrast overlay */
+  backdrop-filter: none;
 }
 
 #cfxui-root {
@@ -193,3 +195,5 @@ li::marker {
     transform: rotateY(180deg);
   }
 }
+
+/* Button radius handled per-component */

@@ -73,16 +73,20 @@ static CURL* curl_easy_init_cfx()
 
 		if (strstr(curlVer, "mbedTLS/") != nullptr)
 		{
-#ifdef CURL_MBEDTLS
-			static mbedtls_x509_crt cacert;
-			mbedtls_x509_crt_init(&cacert);
-			mbedtls_x509_crt_parse(&cacert, sslRoots, sizeof(sslRoots));
-
-			curl_easy_setopt(curlHandle, CURLOPT_SSL_CTX_DATA, &cacert);
-			curl_easy_setopt(curlHandle, CURLOPT_SSL_CTX_FUNCTION, ssl_ctx_callback);
-#else
-			assert(false);
-#endif
+// #ifdef CURL_MBEDTLS
+// 			static mbedtls_x509_crt cacert;
+// 			static bool cacert_init = false;
+// 			if (!cacert_init) {
+// 				mbedtls_x509_crt_init(&cacert);
+// 				mbedtls_x509_crt_parse(&cacert, sslRoots, sizeof(sslRoots));
+// 				cacert_init = true;
+// 			}
+// 
+// 			curl_easy_setopt(curlHandle, CURLOPT_SSL_CTX_DATA, &cacert);
+// 			curl_easy_setopt(curlHandle, CURLOPT_SSL_CTX_FUNCTION, ssl_ctx_callback);
+// #else
+// 			assert(false);
+// #endif
 		}
 	}
 
@@ -862,6 +866,9 @@ struct BufferData
 
 static size_t RequestDataReceived(void *ptr, size_t size, size_t nmemb, void *data)
 {
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "RequestDataReceived: %zu\n", size * nmemb); fclose(dbgLog); }
+
 	size_t rsize = (size * nmemb);
 	char* text = (char*)ptr;
 
@@ -893,14 +900,17 @@ static struct CurlInit
 	}
 } curlInit;
 
-static size_t CurlHeaderInfo(char* buffer, size_t size, size_t nitems, void* userdata)
+static size_t CurlHeaderInfo(char* ptr, size_t size, size_t nitems, void* userdata)
 {
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "CurlHeaderInfo: %zu\n", size * nitems); fclose(dbgLog); }
+
 	auto cdPtr = reinterpret_cast<HttpHeaderList*>(userdata);
 
 	if (cdPtr)
 	{
-		std::string str(buffer, size * nitems);
-
+		std::string str(ptr, size * nitems);
+		
 		// reset HTTP headers if we followed a Location and got a new HTTP response
 		if (str.find("HTTP/") == 0)
 		{
@@ -911,7 +921,17 @@ static size_t CurlHeaderInfo(char* buffer, size_t size, size_t nitems, void* use
 
 		if (colonPos != std::string::npos)
 		{
-			cdPtr->emplace(str.substr(0, colonPos), str.substr(colonPos + 2, str.length() - 2 - colonPos - 2));
+			std::string key = str.substr(0, colonPos);
+			std::string val = str.substr(colonPos + 2);
+
+			while (!val.empty() && (val.back() == '\r' || val.back() == '\n'))
+			{
+				val.pop_back();
+			}
+
+			if (dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a")) { fprintf(dbgLog, "CurlHeaderInfo key: %s\n", key.c_str()); fclose(dbgLog); }
+
+			cdPtr->emplace(key, val);
 		}
 	}
 
@@ -928,6 +948,9 @@ int DL_RequestURL(const char* url, char* buffer, size_t bufSize, HttpHeaderListP
 		bufferData.buffer = buffer;
 		bufferData.curSize = 0;
 		bufferData.maxSize = bufSize;
+
+		FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "DL_RequestURL init curl success\n"); fclose(dbgLog); }
 
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, RequestDataReceived);
@@ -949,7 +972,14 @@ int DL_RequestURL(const char* url, char* buffer, size_t bufSize, HttpHeaderListP
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, responseHeaders.get());
 		}
 
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "DL_RequestURL calling perform for %s\n", url); fclose(dbgLog); }
+
 		CURLcode code = curl_easy_perform(curl);
+		
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "DL_RequestURL perform done for %s: %d\n", url, code); fclose(dbgLog); }
+
 		curl_easy_cleanup(curl);
 
 		buffer[bufferData.curSize] = '\0';
@@ -971,10 +1001,7 @@ bool DL_RunLoop()
 {
 	while (!DL_Process())
 	{
-		HANDLE pHandles[1];
-		pHandles[0] = GetCurrentThread();
-
-		DWORD waitResult = MsgWaitForMultipleObjects(1, pHandles, FALSE, 20, QS_ALLINPUT);
+		DWORD waitResult = MsgWaitForMultipleObjects(0, NULL, FALSE, 20, QS_ALLINPUT);
 
 		MSG msg;
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

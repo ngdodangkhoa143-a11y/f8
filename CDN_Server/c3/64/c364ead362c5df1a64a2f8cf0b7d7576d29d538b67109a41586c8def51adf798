@@ -1,0 +1,19 @@
+{
+  "c++": {
+    "IPC.mojom.Message": {
+      "public_headers": [
+        "ipc/message_view.h"
+      ],
+      "traits_headers": [
+        "ipc/message_mojom_traits.h"
+      ],
+      "typename": "::IPC::MessageView",
+      "copyable_pass_by_value": false,
+      "force_serialize": false,
+      "hashable": false,
+      "move_only": true,
+      "non_copyable_non_movable": false,
+      "nullable_is_same_type": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+[0726/105231.774:INFO:CONSOLE(2)] "[AppService] Initing", source: https://nui-game-internal/ui/app/static/js/main.js (2)
+[0726/105231.775:INFO:CONSOLE(2)] "INITING SERVERS LIST FOR GAME gta5", source: https://nui-game-internal/ui/app/static/js/main.js (2)
+[0726/105231.882:INFO:CONSOLE(2)] "[AppService] Before render", source: https://nui-game-internal/ui/app/static/js/main.js (2)
+[0726/105232.006:INFO:CONSOLE(2)] "[AppService] After render", source: https://nui-game-internal/ui/app/static/js/main.js (2)
+[0726/105232.194:INFO:CONSOLE(2)] "Error: Request to https://changelogs-live.fivem.net/api/changelog/versions failed with status code 404", source: https://nui-game-internal/ui/app/static/js/main.js (2)
+[0726/105232.208:INFO:CONSOLE(1)] "Error: Request to https://servers-frontend.fivem.net/api/servers/streamRedir/ failed with status code 404", source: https://nui-game-internal/ui/app/static/js/src_cfx_common_services_servers_source_WorkerSource_worker_ts.chunk.js (1)
+[0726/105246.464:INFO:CONSOLE(2)] "Mixed Content: The page at 'https://nui-game-internal/ui/app/index.html' was loaded over HTTPS, but requested an insecure resource 'http://1.53.29.127:3030/auth/login'. This request has been blocked; the content must be served over HTTPS.", source: https://nui-game-internal/ui/app/static/js/main.js (2)

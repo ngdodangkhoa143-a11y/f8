@@ -76,6 +76,9 @@ extern void ResetUpdateChannel();
 
 bool Bootstrap_DoBootstrap()
 {
+	FILE* dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "Bootstrap_DoBootstrap entered\n"); fclose(dbgLog); }
+
 	// first check the bootstrapper version
 	char bootstrapVersion[256];
 
@@ -83,10 +86,14 @@ bool Bootstrap_DoBootstrap()
 
 	auto fetchContent = [&contentHeaders, &bootstrapVersion](const std::string& updateChannel)
 	{
-		return DL_RequestURL(va(CFX_UPDATER_URL "/heads/" CONTENT_NAME "/%s?time=%lld", updateChannel, _time64(NULL)), bootstrapVersion, sizeof(bootstrapVersion), contentHeaders);
+		return DL_RequestURL(va(CFX_UPDATER_URL "/heads/" CONTENT_NAME "/%s?time=%lld", updateChannel.c_str(), _time64(NULL)), bootstrapVersion, sizeof(bootstrapVersion), contentHeaders);
 	};
 
 	int result = fetchContent(GetUpdateChannel());
+	
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "DL_RequestURL result: %d\n", result); fclose(dbgLog); }
+
 	bool updateDataValid = true;
 
 	if (result != 0)
@@ -119,21 +126,21 @@ bool Bootstrap_DoBootstrap()
 
 	if (updateDataValid)
 	{
-		int version = std::stoi((*contentHeaders)["x-amz-meta-bootstrap-version"]);
-		int exeSize = std::stoi((*contentHeaders)["x-amz-meta-bootstrap-size"]);
-
-		if (version == 0 || exeSize == 0)
-		{
-			if (GetFileAttributes(MakeRelativeCitPath(L"CoreRT.dll").c_str()) == INVALID_FILE_ATTRIBUTES)
-			{
-				UI_DisplayError(ToWide(va("An error (%i, %s) occurred while checking the bootstrapper version. Check if " CFX_UPDATER_URL " is available in your web browser.", result, DL_RequestURLError())).c_str());
-				return false;
-			}
-
-			updateDataValid = false;
+		int version = 0;
+		int exeSize = 0;
+		auto it = contentHeaders->find("x-amz-meta-bootstrap-version");
+		if (it != contentHeaders->end() && !it->second.empty()) {
+			version = atoi(it->second.c_str());
+		}
+		auto it2 = contentHeaders->find("x-amz-meta-bootstrap-size");
+		if (it2 != contentHeaders->end() && !it2->second.empty()) {
+			exeSize = atoi(it2->second.c_str());
 		}
 
-		if (updateDataValid)
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "Bootstrap version: %d, exeSize: %d\n", version, exeSize); fclose(dbgLog); }
+
+		if (version != 0 && exeSize != 0)
 		{
 			if (version != BASE_EXE_VERSION && GetFileAttributes(MakeRelativeCitPath(L"nobootstrap.txt").c_str()) == INVALID_FILE_ATTRIBUTES)
 			{
@@ -152,18 +159,26 @@ bool Bootstrap_DoBootstrap()
 	{
 		if (GetFileAttributes(MakeRelativeCitPath(L"GTA5.exe").c_str()) != INVALID_FILE_ATTRIBUTES || GetFileAttributes(MakeRelativeCitPath(L"..\\GTA5.exe").c_str()) != INVALID_FILE_ATTRIBUTES)
 		{
-			MessageBox(NULL, L"Please do not place FiveM.exe in your game folder. Make a new empty folder (for example, on your desktop) instead.", L"O\x448\x438\x431\x43A\x430", MB_OK | MB_ICONSTOP);
+			MessageBox(NULL, L"Please do not place F8.exe in your game folder. Make a new empty folder (for example, on your desktop) instead.", L"O\x448\x438\x431\x43A\x430", MB_OK | MB_ICONSTOP);
 			return false;
 		}
 	}
 
-	static HostSharedData<CfxState> initState("CfxInitState");
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "Past CoreRT check\n"); fclose(dbgLog); }
+
+	static HostSharedData<CfxState> initState("F8InitState");
 	initState->ranPastInstaller = true;
 
     if (!VerifyViability())
     {
+		dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+		if (dbgLog) { fprintf(dbgLog, "VerifyViability failed\n"); fclose(dbgLog); }
         return false;
     }
+
+	dbgLog = fopen("C:\\Users\\Administrator\\Desktop\\updater_debug.log", "a");
+	if (dbgLog) { fprintf(dbgLog, "VerifyViability passed, updateDataValid=%d\n", updateDataValid); fclose(dbgLog); }
 
 	if (updateDataValid)
 	{

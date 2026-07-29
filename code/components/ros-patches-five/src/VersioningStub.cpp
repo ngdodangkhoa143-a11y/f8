@@ -30,7 +30,7 @@ public:
 			std::vector<char> outBlob;
 
 			FILE* f = _pfopen(MakeRelativeCitPath(L"citizen/ros/" + converter.from_bytes(filename)).c_str(), _P("rb"));
-			assert(f);
+			if (!f) return;
 
 			fseek(f, 0, SEEK_END);
 			outBlob.resize(ftell(f));

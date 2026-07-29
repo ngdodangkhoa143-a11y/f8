@@ -203,7 +203,7 @@ static void HandleConsoleMessage(const std::string& channel, const std::string& 
 
 static InitFunction initFunction([]()
 {
-	static HostSharedData<CfxState> hostData("CfxInitState");
+	static HostSharedData<CfxState> hostData("F8InitState");
 	static HostSharedData<ConsoleBuffer> conData("ConsoleData");
 
 	console::CoreAddPrintListener(DevConPrintListener);

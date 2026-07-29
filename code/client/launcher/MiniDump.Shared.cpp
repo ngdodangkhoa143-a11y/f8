@@ -255,7 +255,7 @@ extern "C" DLL_EXPORT bool InitializeExceptionHandler()
 
 		HANDLE initEvent = CreateEvent(&securityAttributes, TRUE, FALSE, nullptr);
 
-		HostSharedData<CfxState> hostData("CfxInitState");
+		HostSharedData<CfxState> hostData("F8InitState");
 
 		// create the command line including argument
 		wchar_t commandLine[MAX_PATH * 8];

@@ -278,7 +278,7 @@ void GSClient_QueryServer(gameserveritemext_t& server)
 	auto socket = (server.m_Address.GetAddressFamily() == AF_INET6) ? g_cls.socket6 : g_cls.socket;
 	
 	char message[128];
-	strcpy(message, "\xFF\xFF\xFF\xFFgetinfo xxx");
+	strcpy(message, "\xFE\xFE\xFE\xFEgetinfo xxx");
 
 	sendto(socket, message, strlen(message), 0, (sockaddr*)addr, addrlen);
 }
@@ -566,7 +566,7 @@ void GSClient_QueryMaster()
 	static sockaddr_in masterIP;
 
 	char message[128];
-	_snprintf(message, sizeof(message), "\xFF\xFF\xFF\xFFgetservers " GS_GAMENAME " 4 full empty");
+	_snprintf(message, sizeof(message), "\xFE\xFE\xFE\xFEgetservers " GS_GAMENAME " 4 full empty");
 
 	sendto(g_cls.socket, message, strlen(message), 0, (sockaddr*)&masterIP, sizeof(masterIP));
 
@@ -577,7 +577,7 @@ void GSClient_QueryMaster()
 		broadcastIP.sin_port = htons(i);
 		broadcastIP.sin_addr.s_addr = INADDR_BROADCAST;
 
-		_snprintf(message, sizeof(message), "\xFF\xFF\xFF\xFFgetinfo xxx");
+		_snprintf(message, sizeof(message), "\xFE\xFE\xFE\xFEgetinfo xxx");
 		sendto(g_cls.socket, message, strlen(message), 0, (sockaddr*)&broadcastIP, sizeof(broadcastIP));
 	}
 }
